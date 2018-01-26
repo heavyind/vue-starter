@@ -1,4 +1,5 @@
-path = require("path");
+const path = require("path");
+const nodeExternals = require('webpack-node-externals');
 
 
 const buildPath = path.resolve(__dirname, "build");
@@ -20,22 +21,25 @@ const commonModuleRules = [
 module.exports = [
   {
     target: "node",
-    entry: "./src/server.js",
+    // Tells webpack "hey, we don't need to bundle stuff in node_modules/ like
+    // Express because we're working server-side here."
+    externals: [nodeExternals()],
+    entry: "./src/entry-server.js",
     output: {
       path: buildPath,
-      filename: "server.main.js",
-      publicPath: "static"
+      libraryTarget: "commonjs2",
+      libraryExport: "default",
+      filename: "server.main.js"
     },
     module: {
       rules: commonModuleRules
     }
   },
   {
-    entry: "./src/client.js",
+    entry: "./src/entry-client.js",
     output: {
       path: buildPath,
-      filename: "client.main.js",
-      publicPath: "static"
+      filename: "client.main.js"
     },
     module: {
       rules: commonModuleRules

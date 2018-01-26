@@ -1,19 +1,26 @@
-import { createApp } from "./app";
 const server = require("express")();
-// const renderer = require("vue-server-renderer").createRenderer();
+const createApp = require("../build/server.main.js");
+const renderer = require("vue-server-renderer").createRenderer();
 
-// export default context => {
-  // const { app } = createApp();
-  // return app;
-// };
+server.get("*", (req, res) => {
+  const ctx = { url: req.url };
 
-// server.get("*", (req, res) => {
-  // const context = { url: req.url };
-  // const app = createApp(context);
 
-  // renderer.renderToString(app, (err, html) => {
-    // res.end(html);
-  // });
-// });
+  createApp(ctx).then(app => {
 
-// server.listen(8080);
+    // console.log("The app is:");
+    // console.log(app);
+    // console.log("The rendered output is:");
+    // console.log(renderer.renderToString(createApp(ctx), function(e,h) {}));
+
+
+    renderer.renderToString(createApp(ctx), (err, html) => {
+      console.log(err);
+      res.end(html);
+    });
+  });
+
+});
+
+
+server.listen(9090);

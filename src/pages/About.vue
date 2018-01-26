@@ -7,6 +7,10 @@
 
 <script>
 export default {
-  name: "page-about"
+  name: "page-about",
+  data () {
+    return {};
+  },
+  render: h => { return h("div", "works"); }
 };
 </script>
