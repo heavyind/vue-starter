@@ -1,0 +1,8 @@
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
+rules:
+  semi: 2
+  quotes: ["error", "double"]
+extends:
+  'plugin:vue/essential'
