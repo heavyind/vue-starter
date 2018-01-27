@@ -5,12 +5,10 @@ import PageHome from "./pages/Home.vue";
 import PageAbout from "./pages/About.vue";
 
 
-export function createApp(ctx) {
+export function createApp() {
 
   const router = createRouter();
-  const data = { url: ctx.url };
   const app = new Vue({
-    data,
     router,
     render: h => h(App),
     components: {

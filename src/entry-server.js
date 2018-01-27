@@ -4,7 +4,7 @@ import { createApp } from "./app";
 export default ctx => {
 
   return new Promise((res, rej) => {
-    const { app, router } = createApp(ctx);
+    const { app, router } = createApp();
 
     router.push(ctx.url);
 

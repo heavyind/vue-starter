@@ -1,7 +1,6 @@
 <template>
   <div>
     About page
-    <a href="/">Go home</a>
   </div>
 </template>
 
