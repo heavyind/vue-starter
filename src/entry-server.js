@@ -4,9 +4,8 @@ import { createApp } from "./app";
 export default ctx => {
 
   return new Promise((res, rej) => {
-    const { mapp, router } = createApp(ctx);
+    const { app, router } = createApp(ctx);
 
-    // console.log(mapp);
     router.push(ctx.url);
 
     router.onReady(() => {
@@ -15,7 +14,7 @@ export default ctx => {
       if (!matchedComponents.length) {
         // return rej({ code: 404 });
       }
-      res(mapp);
+      res(app);
     }, rej);
   });
 };

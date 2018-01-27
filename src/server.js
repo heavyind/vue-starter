@@ -6,8 +6,7 @@ server.get("*", (req, res) => {
   const ctx = { url: req.url };
 
 
-  createApp(ctx).then(mapp => {
-    console.log(mapp);
+  createApp(ctx).then(app => {
 
     // console.log("The app is:");
     // console.log(app);
@@ -15,7 +14,7 @@ server.get("*", (req, res) => {
     // console.log(renderer.renderToString(createApp(ctx), function(e,h) {}));
 
 
-    renderer.renderToString(mapp, (err, html) => {
+    renderer.renderToString(createApp(ctx), (err, html) => {
       console.log(err);
       res.end(html);
     });

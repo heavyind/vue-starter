@@ -1,23 +1,23 @@
-const Vue = require("vue");
+import Vue from "vue";
 import App from "./App.vue";
 import { createRouter } from "./router";
+import PageHome from "./pages/Home.vue";
+import PageAbout from "./pages/About.vue";
 
-export function createApp (ctx) {
+
+export function createApp(ctx) {
+
   const router = createRouter();
-
-  const mapp = new Vue({
-    render: h => { return h(App); }
+  const data = { url: ctx.url };
+  const app = new Vue({
+    data,
+    router,
+    render: h => h(App),
+    components: {
+      PageHome: PageHome,
+      PageAbout: PageAbout
+    }
   });
 
-  // mapp._render = function(h) {
-    // return h("div", "suck my fucking dick");
-  // };
-
-
-  // console.log("The mapp is: ");
-  // console.log(mapp);
-  // console.log("The render function is:");
-  // console.log(mapp._render);
-
-  return { mapp, router };
+  return { app, router };
 };
