@@ -16,6 +16,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-vue-app": "^2.0.0",
     "vue-loader": "^13.7.0",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.13",

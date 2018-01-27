@@ -11,8 +11,6 @@ export default {
   components: {
     PageHome,
     PageAbout
-  },
-  // Remove after I work this bug out
-  render: h => { return h("div", "something"); }
+  }
 };
 </script>
