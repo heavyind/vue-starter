@@ -3,6 +3,7 @@
     <header>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
+      <router-link to="/post/1">Post</router-link>
     </header>
     <router-view></router-view>
   </div>
