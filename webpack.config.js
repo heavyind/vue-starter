@@ -23,7 +23,6 @@ module.exports = [
     target: "node",
     // Tells webpack "hey, we don't need to bundle stuff in node_modules/ like
     // Express because we're working server-side here."
-    devtool: "#source-map",
     externals: [nodeExternals()],
     entry: "./src/entry-server.js",
     output: {

@@ -12,8 +12,6 @@ server.get("*", (req, res) => {
     renderer.renderToString(app, (err, html) => {
       res.end(generateHtml(html));
     });
-  }).catch(function(e) {
-    console.log(e);
   });
 });
 
@@ -22,7 +20,6 @@ function generateHtml(content) {
   const topHalf = `
     <html>
       <head><title>Welcome</title></head>
-      <link rel="icon" href="img/favicon.png"></link>
     <body>`;
 
   const bottomHalf = `
