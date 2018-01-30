@@ -7,9 +7,12 @@
 <script>
 export default {
   name: "page-about",
-  data () {
-    return {};
+  mounted () {
+    console.log(document.getElementById("app").offsetHeight);
   },
-  render: h => { return h("div", "works"); }
+  data () {
+    return {
+    };
+  }
 };
 </script>
