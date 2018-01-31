@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server",
     "watch": "rimraf dist && webpack --config ./build/webpack.base.config.js --watch --watch-poll",
     "build": "rimraf dist && NODE_ENV=production webpack --config ./build/webpack.base.config.js"
   },
