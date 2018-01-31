@@ -8210,6 +8210,9 @@ Component.options.__file = "src/pages/About.vue"
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: "page-home",
@@ -8283,8 +8286,6 @@ Component.options.__file = "src/pages/Post.vue"
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-//
-//
 //
 //
 //
@@ -8436,7 +8437,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._ssrNode("\n  Home page\n")])
+  return _c(
+    "div",
+    [
+      _vm._ssrNode("\n  Home page\n  "),
+      _vm._l([1, 2, 3, 4, 5], function(postNo) {
+        return _vm._ssrNode(
+          "<div>",
+          "</div>",
+          [
+            _c("router-link", { attrs: { to: "/post/" + postNo } }, [
+              _vm._v("Post " + _vm._s(postNo))
+            ])
+          ],
+          1
+        )
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -8506,8 +8525,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm._ssrNode(
-      "\n  A post\n  <br>" +
-        _vm._ssrEscape("\n  " + _vm._s(_vm.post.title) + "\n  ") +
+      _vm._ssrEscape("\n  " + _vm._s(_vm.post.title) + "\n  ") +
         "<br>" +
         _vm._ssrEscape("\n  " + _vm._s(_vm.post.body) + "\n")
     )
@@ -12167,17 +12185,12 @@ var index_esm = {
 function fetchPost(id) {
 
   function mockPost(id) {
-    const clientPost = {
+    const post = {
       id: id,
       title: "Post title of post number " + id + ".",
-      body: "From the client!"
+      body: "This is the body of post number " + id + "."
     };
-    const serverPost = {
-      id: id,
-      title: "Post title of post number " + id + ".",
-      body: "From the client!"
-    };
-    return serverPost;
+    return post;
   }
 
   return new Promise((res, rej) => {

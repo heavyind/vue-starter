@@ -2,17 +2,12 @@
 export function fetchPost(id) {
 
   function mockPost(id) {
-    const clientPost = {
+    const post = {
       id: id,
       title: "Post title of post number " + id + ".",
-      body: "From the client!"
+      body: "This is the body of post number " + id + "."
     };
-    const serverPost = {
-      id: id,
-      title: "Post title of post number " + id + ".",
-      body: "From the client!"
-    };
-    return serverPost;
+    return post;
   }
 
   return new Promise((res, rej) => {

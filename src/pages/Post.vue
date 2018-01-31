@@ -1,7 +1,5 @@
 <template>
   <div>
-    A post
-    <br>
     {{ post.title }}
     <br>
     {{ post.body }}
