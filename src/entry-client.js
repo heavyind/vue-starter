@@ -10,7 +10,6 @@ router.onReady(() => {
   router.beforeResolve((to, from, next) => {
     const matched = router.getMatchedComponents(to);
     const prevMatched = router.getMatchedComponents(from);
-    console.log(to);
 
     let diffed = false;
     const activated = matched.filter((c, i) => {
