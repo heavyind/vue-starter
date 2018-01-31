@@ -1,12 +1,12 @@
 import { createApp } from "./app";
 
 
-export default ctx => {
+export default context => {
 
-  return new Promise((fulfill, reject) => {
+  return new Promise((resolve, reject) => {
     const { app, router, store } = createApp();
 
-    router.push(ctx.url);
+    router.push(context.url);
 
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents();
@@ -23,8 +23,8 @@ export default ctx => {
           });
         }
       })).then(() => {
-        ctx.state = store.state;
-        fulfill(app);
+        context.state = store.state;
+        resolve(app);
       }).catch(function(e) {
         console.log(e);
       });
