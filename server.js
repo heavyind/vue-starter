@@ -1,24 +1,22 @@
 const express = require("express");
-const createApp = require("./dist/server.main.js");
-const vueServerRenderer = require("vue-server-renderer");
+const appBundle = require("./dist/server.main.json");
+const { createBundleRenderer } = require("vue-server-renderer");
 
-const renderer = vueServerRenderer.createRenderer({
-  template: require("fs").readFileSync("./src/layout.html", "utf-8")
+const server = express();
+const renderer = createBundleRenderer(appBundle, {
+  runInNewContext: false,
+  template: require("fs").readFileSync("./src/layout.html", "utf-8"),
+  clientManifest: false
 });
 
 
-const server = express();
 server.use(express.static("./public"));
 
 server.get("*", (req, res) => {
   const context = { url: req.url };
 
-  createApp(context).then(app => {
-    renderer.renderToString(app, context, (err, html) => {
-      res.end(html);
-    });
-  }).catch(function(e) {
-    console.log(e);
+  renderer.renderToString(context, (err, html) => {
+    res.end(html);
   });
 });
 
