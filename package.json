@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "node server",
     "watch": "rimraf dist && webpack --config ./build/webpack.base.config.js --watch --watch-poll",
-    "build": "rimraf dist && npm run build:client && npm run build:server",
-    "build:client": "webpack --config ./build/webpack.client.config.js --progress",
-    "build:server": "webpack --config ./build/webpack.server.config.js --progress"
+    "build": "rimraf dist && webpack --config ./build/webpack.base.config.js"
   },
   "author": "",
   "license": "ISC",
