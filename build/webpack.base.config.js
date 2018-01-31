@@ -5,6 +5,7 @@ const webpackMerge = require("webpack-merge");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 const serverConfig = require("./webpack.server.config.js");
 const clientConfig = require("./webpack.client.config.js");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -31,9 +32,7 @@ const baseConfig = {
   },
   plugins: isProduction ? 
   [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }) 
+    new UglifyJsPlugin()
   ] :
   [
     new FriendlyErrorsPlugin()
