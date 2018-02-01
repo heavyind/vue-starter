@@ -19,7 +19,7 @@ module.exports = {
     new VueSsrServerPlugin ({
       // The default name is just inconsistent, so it's been reconfigured to
       // match the client name even though it's JSON.
-      filename: "server.main.json"
+      filename: "app.server.json"
     }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),

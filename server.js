@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 // const serverBundle = () => require("./dist/server.main.json");
-const serverBundle = "/Users/chaseries/Desktop/vue-ssr-starter/dist/server.main.json";
+const serverBundle = "/Users/chaseries/Desktop/vue-ssr-starter/dist/app.server.json";
 const { createBundleRenderer } = require("vue-server-renderer");
 
 const isProduction = process.env.NODE_ENV === "production";
