@@ -1,21 +1,24 @@
 const express = require("express");
 const path = require("path");
-const serverBundle = "/Users/chaseries/Desktop/vue-ssr-starter/dist/app.server.json";
 const { createBundleRenderer } = require("vue-server-renderer");
 
 const isProduction = process.env.NODE_ENV === "production";
-const skeletonPath = "./src/skeleton.html";
 const clientManifest = require("./dist/client-manifest.json");
+const serverBundlePath = path.resolve(__dirname, "dist/app.server.json");
+const skeletonPath = path.resolve(__dirname, "./src/skeleton.html");
 const server = express();
+
+
+console.log(serverBundlePath);
 
 
 server.use(express.static("./dist"));
 
 server.get("*", (req, res) => {
 
-  const renderer = createBundleRenderer(serverBundle, {
+  const renderer = createBundleRenderer(serverBundlePath, {
     runInNewContext: false,
-    template: require("fs").readFileSync("./src/skeleton.html", "utf-8"),
+    template: require("fs").readFileSync(skeletonPath, "utf-8"),
     clientManifest
   });
 
