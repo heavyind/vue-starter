@@ -9,9 +9,6 @@ const skeletonPath = path.resolve(__dirname, "./src/skeleton.html");
 const server = express();
 
 
-console.log(serverBundlePath);
-
-
 server.use(express.static("./dist"));
 
 server.get("*", (req, res) => {
