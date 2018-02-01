@@ -1,1 +1,1 @@
-/Users/chaseries/Programming/sandbox/javascript/vue/ssr/dist/client.main.js
+/Users/chaseries/Desktop/vue-ssr-starter/dist/client.main.js

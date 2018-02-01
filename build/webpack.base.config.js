@@ -11,7 +11,7 @@ const isProduction = process.env.NODE_ENV === "production";
 
 
 const baseConfig = {
-  devtool: isProduction ? false : "#cheap-module-source-map",
+  devtool: isProduction ? false : "source-map",
   resolve: {
     alias: {
       "public": path.resolve(__dirname, "../public")
@@ -31,12 +31,12 @@ const baseConfig = {
     ]
   },
   plugins: isProduction ? 
-  [
-    new UglifyJsPlugin()
-  ] :
-  [
-    new FriendlyErrorsPlugin()
-  ]
+    [
+      new UglifyJsPlugin()
+    ] :
+    [
+      new FriendlyErrorsPlugin()
+    ]
 };
 
 module.exports = [

@@ -1,13 +1,16 @@
 const webpack = require("webpack");
-const webpackMerge = require("webpack-merge");
 const imports = require("./imports");
+const VueSsrClientPlugin = require("vue-server-renderer/client-plugin");
 
 
-module.exports = webpackMerge(imports.baseConfig, {
-  entry: "./src/entry-client.js",
+module.exports = {
+  entry: {
+    app: "./src/entry-client.js"
+  },
   output: {
     path: imports.distPath,
-    filename: "client.main.js"
+    // filename: "[name].[chunkhash].main.js"
+    filename: "[name].main.js"
   },
   plugins: [
     // Import NODE_ENV into webpack, which tells Uglify to remove all devel-
@@ -16,6 +19,13 @@ module.exports = webpackMerge(imports.baseConfig, {
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),
       "process.env.VUE_ENV": "'client'"
+    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    // name: "manifest",
+    // minChunks: Infinity
+    // }),
+    new VueSsrClientPlugin({
+      filename: "client-manifest.json"
     })
   ]
-});
+};
