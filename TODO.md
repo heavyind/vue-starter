@@ -1,0 +1,1 @@
+1) The public path configuration is horrendously broken. Take a look at how the vue-hackernews project solves this. It seems they serve .js files directly from dist/ while image files are server from public/ for some reason.
