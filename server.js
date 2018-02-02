@@ -22,6 +22,9 @@ server.get("*", (req, res) => {
   const context = { url: req.url };
 
   renderer.renderToString(context, (err, html) => {
+    if (!isProduction) {
+      console.log(err);
+    }
     res.end(html);
   });
 });

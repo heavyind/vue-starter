@@ -9,7 +9,7 @@ import { sync } from "vuex-router-sync";
 
 
 
-export function createApp() {
+export const createApp = function createApp() {
 
   const router = createRouter();
   const store = createStore();
@@ -19,12 +19,7 @@ export function createApp() {
   const app = new Vue({
     router,
     store,
-    render: h => h(App),
-    components: {
-      PageHome: PageHome,
-      PageAbout: PageAbout,
-      PagePost: PagePost
-    }
+    render: h => h(App)
   });
 
   return { app, router, store };

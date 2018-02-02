@@ -14,8 +14,7 @@ export default {
   },
   computed: {
     post () {
-      const aPost = this.$store.state.posts[this.$route.params.id];
-      return aPost;
+      return this.$store.state.posts[this.$route.params.id];
     }
   }
 };
