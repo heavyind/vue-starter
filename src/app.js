@@ -1,8 +1,5 @@
 import Vue from "vue";
 import App from "./App.vue";
-import PageHome from "./pages/Home.vue";
-import PageAbout from "./pages/About.vue";
-import PagePost from "./pages/Post.vue";
 import { createRouter } from "./router";
 import { createStore } from "./store";
 import { sync } from "vuex-router-sync";

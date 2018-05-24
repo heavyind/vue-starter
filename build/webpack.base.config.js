@@ -13,7 +13,11 @@ const baseConfig = {
   devtool: isProduction ? false : "source-map",
   resolve: {
     alias: {
-      "public": path.resolve(__dirname, "../public")
+      "public": path.resolve(__dirname, "../public"),
+      "SRC": path.resolve(__dirname, "../src"),
+      "SASS": path.resolve(__dirname, "../src/sass"),
+      "VUE_COMPONENT": path.resolve(__dirname, "../src/component"),
+      "VUE_PAGE": path.resolve(__dirname, "../src/page")
     }
   },
   module: {

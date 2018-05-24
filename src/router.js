@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import PageHome from "./pages/Home.vue";
-import PageAbout from "./pages/About.vue";
-import PagePost from "./pages/Post.vue";
+import PageHome from "VUE_PAGE/Home.vue";
+import PageAbout from "VUE_PAGE/About.vue";
+import PagePost from "VUE_PAGE/Post.vue";
 
 
 Vue.use(VueRouter);
@@ -13,7 +13,7 @@ const routes = [
   { path: "/post/:id", component: PagePost }
 ];
 
-export function createRouter() {
+export const createRouter = function createRouter() {
   return new VueRouter({
     mode: "history",
     routes: routes
