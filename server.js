@@ -9,6 +9,7 @@ const skeletonPath = path.resolve(__dirname, "./src/skeleton.html");
 const server = express();
 
 
+server.use(express.static("./public"));
 server.use(express.static("./dist"));
 
 server.get("*", (req, res) => {
