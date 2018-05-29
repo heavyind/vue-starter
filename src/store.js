@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 import { fetchPost } from "./api";
 
-export function createStore() {
+export const createStore = function createStore() {
   return new Vuex.Store({
     state: {
       posts: {}
@@ -23,4 +23,4 @@ export function createStore() {
       }
     }
   });
-}
+};
