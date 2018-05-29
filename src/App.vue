@@ -15,4 +15,8 @@ export default {
 
 <style lang="sass">
 @import "~SASS/main";
+
+#app
+  position: relative
+  min-height: 100vh
 </style>
