@@ -5,11 +5,13 @@ const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 const serverConfig = require("./webpack.server.config.js");
 const clientConfig = require("./webpack.client.config.js");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const isProduction = process.env.NODE_ENV === "production";
 
 
 const baseConfig = {
+  mode: isProduction ? "production" : "development",
   devtool: isProduction ? false : "source-map",
   resolve: {
     alias: {
@@ -30,16 +32,23 @@ const baseConfig = {
       {
         test: /\.vue$/,
         loader: "vue-loader"
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: [
+          "vue-style-loader",
+          "css-loader",
+          {
+            loader: "sass-loader?indentedSyntax"
+          }
+        ]
       }
     ]
   },
-  plugins: isProduction ? 
-    [
-      new UglifyJsPlugin()
-    ] :
-    [
-      new FriendlyErrorsPlugin()
-    ]
+  plugins: [
+    new VueLoaderPlugin(),
+    ...( isProduction ? [] : [new FriendlyErrorsPlugin()] )
+  ]
 };
 
 module.exports = [
