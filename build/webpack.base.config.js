@@ -4,7 +4,7 @@ const webpackMerge = require("webpack-merge");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 const serverConfig = require("./webpack.server.config.js");
 const clientConfig = require("./webpack.client.config.js");
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
 
