@@ -8,5 +8,6 @@ describe("LayoutHeader", () => {
       stubs: ["router-link"]
     });
     expect(wrapper.isVueInstance()).toBeTruthy();
-  })
+    expect(wrapper.vm.$options.name).toBe("component-layout-header-layout-header")
+  });
 });

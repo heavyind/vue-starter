@@ -7,7 +7,7 @@
     "watch": "rimraf dist && webpack --config ./build/webpack.base.config.js --watch --watch-poll",
     "build": "rimraf dist && NODE_ENV=production webpack --config ./build/webpack.base.config.js",
     "build:dev": "rimraf dist && webpack --config ./build/webpack.base.config.js",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "author": "",
   "license": "ISC",

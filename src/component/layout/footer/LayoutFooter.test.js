@@ -7,6 +7,6 @@ describe("LayoutFooter", () => {
     const wrapper = mount(LayoutFooter, {
       stubs: ["router-link"]
     });
-    expect(wrapper.isVueInstance()).toBeTruthy();
-  })
+    expect(wrapper.vm.$options.name).toBe("component-layout-footer-layout-footer");
+  });
 });
