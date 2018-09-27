@@ -6,7 +6,8 @@
   "scripts": {
     "watch": "rimraf dist && webpack --config ./build/webpack.base.config.js --watch --watch-poll",
     "build": "rimraf dist && NODE_ENV=production webpack --config ./build/webpack.base.config.js",
-    "build:dev": "rimraf dist && webpack --config ./build/webpack.base.config.js"
+    "build:dev": "rimraf dist && webpack --config ./build/webpack.base.config.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -15,17 +16,22 @@
     "vue": "^2.5.17"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.25",
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^7.1.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^1.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
+    "jest": "^23.6.0",
+    "jest-serializer-vue": "^2.0.2",
     "node-sass": "^4.9.2",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
     "uglifyjs-webpack-plugin": "^1.2.7",
+    "vue-jest": "^2.6.0",
     "vue-loader": "^15.2.6",
     "vue-router": "^3.0.1",
     "vue-server-renderer": "^2.5.17",
@@ -36,5 +42,22 @@
     "webpack-cli": "^3.1.0",
     "webpack-merge": "^4.1.4",
     "webpack-node-externals": "^1.7.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
   }
 }
