@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import LayoutFooter from "./LayoutFooter";
+import LayoutFooter from "./LayoutFooter.vue";
 
 
 describe("LayoutFooter", () => {

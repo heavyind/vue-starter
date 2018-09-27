@@ -54,7 +54,7 @@
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
+      "^VUE_COMPONENT/(.*)$": "<rootDir>/src/component/$1"
     },
     "snapshotSerializers": [
       "<rootDir>/node_modules/jest-serializer-vue"

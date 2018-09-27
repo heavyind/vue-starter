@@ -12,7 +12,7 @@ import LayoutHeader from "VUE_COMPONENT/layout/header/LayoutHeader.vue";
 
 
 export default {
-  name: "post",
+  name: "page-post",
   asyncData ({store, route}) {
     return store.dispatch("fetchPost", route.params.id);
   },

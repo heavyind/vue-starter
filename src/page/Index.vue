@@ -13,7 +13,7 @@ import LayoutHeader from "VUE_COMPONENT/layout/header/LayoutHeader.vue";
 
 
 export default {
-  name: "page-home",
+  name: "page-index",
   components: {
     LayoutHeader
   }
