@@ -28,6 +28,6 @@ router.onReady(() => {
       next();
     }).catch(next);
   });
-});
 
-app.$mount("#app");
+  app.$mount("#app");
+});

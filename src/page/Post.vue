@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import LayoutHeader from "VUE_COMPONENT/layout/header/LayoutHeader.vue";
-
 
 export default {
   name: "page-post",
@@ -17,7 +15,10 @@ export default {
     return store.dispatch("fetchPost", route.params.id);
   },
   components: {
-    LayoutHeader
+    LayoutHeader: () => import(
+      /* webpackChunkName: "componentHeaderLayoutHeader" */
+      "VUE_COMPONENT/layout/header/LayoutHeader.vue"
+    )
   },
   computed: {
     post () {
