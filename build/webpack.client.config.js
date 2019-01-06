@@ -9,8 +9,8 @@ module.exports = {
   },
   output: {
     path: imports.distPath,
-    // filename: "[name].[chunkhash].main.js"
-    filename: "[name].main.js"
+    // filename: "js/[name].[chunkhash].main.js"
+    filename: "dist/[name].js"
   },
   plugins: [
     // Import NODE_ENV into webpack, which tells Uglify to remove all devel-

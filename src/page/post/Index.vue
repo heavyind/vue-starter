@@ -1,28 +1,27 @@
 <template>
   <div>
-    <layout-header></layout-header>
-    {{ post.title }}
-    <br>
-    {{ post.body }}
+    <div v-if="post">
+      {{ post.title }}
+      {{ post.body }}
+    </div>
+    <div v-else>
+      No post
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 
 export default {
   name: "page-post",
   asyncData ({store, route}) {
-    return store.dispatch("fetchPost", route.params.id);
-  },
-  components: {
-    LayoutHeader: () => import(
-      /* webpackChunkName: "componentHeaderLayoutHeader" */
-      "VUE_COMPONENT/layout/header/LayoutHeader.vue"
-    )
+    return store.dispatch("post/fetchPost", route.params.id);
   },
   computed: {
     post () {
-      return this.$store.state.posts[this.$route.params.id];
+      return this.$store.state.post.posts[this.$route.params.id];
     }
   }
 };

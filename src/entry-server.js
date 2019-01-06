@@ -17,6 +17,7 @@ export default context => {
 
       Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {
+          console.log("There's asyncdata");
           return Component.asyncData({
             store: store,
             route: router.currentRoute

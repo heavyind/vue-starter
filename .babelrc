@@ -1,6 +1,6 @@
 {
   "presets": ["es2015"],
-  "plugins": ["syntax-dynamic-import"],
+  "plugins": ["syntax-dynamic-import", "transform-object-rest-spread"],
   "env": {
     "test": {
       "presets": [
