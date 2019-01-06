@@ -2,8 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 const PageIndex = () => import(/* webpackChunkName: "pageIndex" */ "VUE_PAGE/Index.vue");
-const PageAbout = () => import(/* webpackChunkName: "pageAbout" */ "VUE_PAGE/About.vue");
-const PagePost = () => import(/* webpackChunkName: "pagePost" */ "VUE_PAGE/Post.vue");
+const PageAbout = () => import(/* webpackChunkName: "pageAbout" */ "VUE_PAGE/about/Index.vue");
+const PagePost = () => import(/* webpackChunkName: "pagePost" */ "VUE_PAGE/post/Index.vue");
 
 
 Vue.use(VueRouter);

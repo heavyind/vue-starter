@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-import { fetchPost } from "./api";
+import { fetchPost } from "SRC/api";
 
 
 export const actions = {
