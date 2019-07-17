@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import LayoutHeader from "VUE_COMPONENT/layout/header/LayoutHeader.vue";
 
 
 export default {
