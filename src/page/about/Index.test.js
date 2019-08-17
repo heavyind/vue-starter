@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import About from "./About.vue";
+import About from "./Index.vue";
 
 
 describe("AboutPage", () => {

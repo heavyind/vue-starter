@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { fetchPost } from "SRC/api";
+import { fetchPost } from "../../api.js";
 
 
 const state = {
