@@ -14,25 +14,11 @@
 
 
 <script>
-import Trans from "../Trans.vue";
+import mixinTrans from "../mixin/trans";
 
 
 export default {
-  props: {
-    initOnly: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    delay: {
-      type: Number,
-      required: false,
-      default: 0
-    }
-  },
-  components: {
-    Trans
-  },
+  mixins: [mixinTrans],
   data () {
     return {
       transitioning: false

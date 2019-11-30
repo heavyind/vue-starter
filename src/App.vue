@@ -62,9 +62,6 @@ export default {
   },
   mounted () {
     this.mountedHook();
-    setInterval(() => {
-      //console.log(this.transCurrent);
-    }, 100);
   }
 };
 </script>

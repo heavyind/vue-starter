@@ -136,9 +136,6 @@ export default {
     _leaveCancelled () {
       if (this.leaveCancelled) { this.leaveCancelled(); }
     }
-  },
-  mounted () {
-    console.log(this.transCurrentName);
   }
 };
 </script>
