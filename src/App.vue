@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="!initLoadComplete">
+    <div v-if="!preloadDone">
       <preloader></preloader>
     </div>
     <div v-else>
@@ -21,15 +21,15 @@ export default {
   },
   computed: {
     ...mapState({
-      initLoadComplete: state => state.loading.initLoadComplete
+      preloadDone: state => state.preload.done
     })
   },
   methods: {
     ...mapActions({
-      setInitLoadComplete: "loading/setInitLoadComplete"
+      setPreloadDone: "preload/setPreloadDone"
     }),
     mountedHook () {
-      setTimeout(this.setInitLoadComplete, 1000);
+      setTimeout(this.setPreloadDone, 1000);
     }
   },
   mounted () {
