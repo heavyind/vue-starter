@@ -50,7 +50,7 @@ export default {
 </script>
 
 
-<style lang="sass" scoped>
+<style lang="sass">
 
 $easing-function: cubic-bezier(0, 0.91, 0.35, 1)
 
