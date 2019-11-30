@@ -14,11 +14,11 @@ export default {
   methods: {
     ...mapActions({
       transHide: "trans/hide",
-      setTransition: "trans/setTransCurrent"
+      transSetCurrent: "trans/setCurrent"
     }),
     handleClick(e) {
       e.preventDefault();
-      if (this.trans) { this.setTransition(this.trans); }
+      if (this.trans) { this.transSetCurrent(this.trans); }
       if (this.to !== this.$route.path) {
         Vue.nextTick(() => {
           this.transHide();

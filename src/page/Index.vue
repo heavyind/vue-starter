@@ -1,19 +1,19 @@
 <template>
   <div>
-    <trans-up-and-in>
+    <trans-up-in-down-out>
       <div>Home page</div>
-    </trans-up-and-in>
+    </trans-up-in-down-out>
     <trans-link to="/about">About</trans-link>
   </div>
 </template>
 
 <script>
-import TransUpAndIn from "@/component/trans/fx/UpAndIn.vue";
+import TransUpInDownOut from "@/component/trans/trans-wrapper/UpInDownOut.vue";
 
 export default {
   name: "page-index",
   components: {
-    TransUpAndIn
+    TransUpInDownOut
   }
 };
 </script>

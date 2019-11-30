@@ -27,11 +27,11 @@ const mutations = {
     state.initFlag = true;
   },
 
-  setTransCurrent (state, trans) {
+  _setCurrent (state, trans) {
     state.current = trans;
   },
 
-  setTransDefault (state, trans) {
+  _setDefault (state, trans) {
     state.default = trans;
   }
 };
@@ -47,22 +47,22 @@ const actions = {
     commit("_hide");
   },
 
-  setTransCurrent ({ commit }, trans) {
-    commit("setTransCurrent", trans);
+  setCurrent ({ commit }, trans) {
+    commit("_setCurrent", trans);
   },
 
-  setTransDefault ({ commit }, trans) {
-    commit("setTransDefault", trans);
+  setDefault ({ commit }, trans) {
+    commit("_setDefault", trans);
   },
 
   initialize ({ commit }, settings) {
 
     if (settings && settings.current) {
-      commit("setTransCurrent", settings.current);
+      commit("_setCurrent", settings.current);
     }
 
     if (settings && settings.default) {
-      commit("setTransDefault", settings.default);
+      commit("_setDefault", settings.default);
     }
 
     commit("_show");
