@@ -4,14 +4,14 @@ const state = {
 };
 
 const mutations = {
-  _setPreloadDone (state) {
+  _setDone (state) {
     state.done = true;
   }
 };
 
 const actions = {
-  setPreloadDone ({ commit }) {
-    commit("_setPreloadDone");
+  setDone ({ commit }) {
+    commit("_setDone");
   }
 };
 
