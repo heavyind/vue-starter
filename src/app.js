@@ -3,8 +3,10 @@ import App from "./App.vue";
 import { createRouter } from "@/router";
 import { createStore } from "@/store/store";
 import { sync } from "vuex-router-sync";
+import TransLink from "@/component/trans/Link.vue";
 
 
+Vue.component("trans-link", TransLink);
 
 export const createApp = function createApp() {
 

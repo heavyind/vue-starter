@@ -4,7 +4,13 @@
       <preloader></preloader>
     </div>
     <div v-else>
-      <router-view></router-view>
+      <transition
+        mode="out-in"
+        :duration="transCurrent.duration"
+        @beforeLeave="transBeforeLeave"
+        @beforeEnter="transBeforeEnter">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -12,6 +18,7 @@
 <script>
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
+import { transitions } from "@/settings";
 import Preloader from "@/component/preloader/Index.vue";
 
 export default {
@@ -21,19 +28,43 @@ export default {
   },
   computed: {
     ...mapState({
-      preloadDone: state => state.preload.done
+      preloadDone: state => state.preload.done,
+      transCurrent: state => state.trans.current
     })
   },
   methods: {
     ...mapActions({
-      setPreloadDone: "preload/setPreloadDone"
+      preloadSetDone: "preload/setDone",
+      transInitialize: "trans/initialize",
+      transShow: "trans/show",
+      transHide: "trans/hide"
     }),
+    transBeforeLeave () {
+      this.transHide();
+    },
+    transBeforeEnter () {
+      this.transShow();
+    },
     mountedHook () {
-      setTimeout(this.setPreloadDone, 1000);
+      setTimeout(this.preloadSetDone, 0);
+    }
+  },
+  watch: {
+    preloadDone (b) {
+      if (b === true) {
+        const transSettings = {
+          default: { ...transitions.default },
+          current: { ...transitions.default }
+        };
+        this.transInitialize(transSettings);
+      }
     }
   },
   mounted () {
     this.mountedHook();
+    setInterval(() => {
+      //console.log(this.transCurrent);
+    }, 100);
   }
 };
 </script>
