@@ -1,11 +1,21 @@
 <template>
-  <div class="modal-dummy">Dummy modal component</div>
+  <div class="modal-dummy">
+    Dummy modal component
+    <button @click="modalClose">Close modal</button>
+  </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 
 export default {
-  name: "modal-dummy"
+  name: "modal-dummy",
+  methods: {
+    ...mapActions({
+      modalClose: "modal/close"
+    })
+  }
 };
 </script>
 
