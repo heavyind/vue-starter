@@ -51,6 +51,10 @@ const actions = {
     commit("_setCurrent", trans);
   },
 
+  setCurrentAsDefault ({ commit, state }) {
+    commit("_setCurrent", state.default);
+  },
+
   setDefault ({ commit }, trans) {
     commit("_setDefault", trans);
   },
