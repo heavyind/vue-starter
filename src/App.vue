@@ -12,7 +12,7 @@
         @beforeEnter="transBeforeEnter">
           <router-view></router-view>
       </transition>
-      <button @click="modalOpenWith">Open modal</button>
+      <button @click="modalOpen">Open modal</button>
     </div>
   </div>
 </template>
@@ -45,8 +45,8 @@ export default {
       transHide: "trans/hide",
       transSetCurrentAsDefault: "trans/setCurrentAsDefault"
     }),
-    modalOpenWith (component) {
-      this.$store.dispatch("modal/openWith", { component: component });
+    modalOpen (component) {
+      this.$store.dispatch("modal/openWith", { component: ModalDummy });
     },
     transBeforeLeave () {
       this.transHide();

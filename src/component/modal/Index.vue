@@ -41,7 +41,6 @@ export default {
   },
   mounted () {
     addEventListener("keyup", this.handleKeyCodes);
-    console.log("The settings are", this.settings);
   },
   beforeDestroy () {
     removeEventListener("keyup", this.handleKeyCodes);
