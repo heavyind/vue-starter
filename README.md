@@ -13,7 +13,7 @@ A Vue server side rendered web application with built-in tools to animate elemen
 
 ## A note about architecture
 
-The driving idea behind this project is to allow users to trigger outro animations on child elements before and after route changes. Vue's philosophy on DOM updates, much as Vue's philosophy on routing, can make this tricky. Vue intends to be deterministic in both cases, meaning data and route are the single source of truth behind updates. Neither can be superceded. Vue does, however, offer just enough wiggle room in the form of its `<transition>` components to make things possible without major hacks.
+The driving idea behind this project is to allow users to trigger outro animations on child elements before and after route changes. Vue's philosophy on DOM updates, much as Vue's philosophy on routing, can make this tricky. Vue intends to be deterministic in both cases, meaning data and route are the single source of truth behind updates. Neither can be superceded, so a navigation click doesn't seem to offer much chance for outro transitions. The route updates, Vue re-renders. However, there is just enough wiggle room in the form of Vue's `<transition>` components to make it all work without major hacks.
 
 Specifically, Vue provides for explicit leave `duration`s on its `<transition>`s. If no `transition` property is specified within CSS, the apparent effect is simply a delay before an element is removed\*: it hangs around for however many milliseconds it's programmed to before disappearing. When applied to a transition over `<router-view>`, we can delay any visible navigation updates while fancy `leave` animations get to work within child components. (Animations on `enter` aren't as difficult, for reasons that are probably obvious.) Looking at the URL within the browser's navigation bar upon route changes will prove that state is being updated according to Vue principles, and behavior in general should work as expected.
 
@@ -25,4 +25,4 @@ Thus for animations that depend on component or prop state to occur, such as chi
 
 ...more to come...
 
-\*The component (not the actual DOM object) is already gone, though. Log something within `destroyed` to test this.
+\*The component (not the actual DOM object) is already gone, though. Log something within `destroyed` to confirm that the message is in the console before the transition ends.
