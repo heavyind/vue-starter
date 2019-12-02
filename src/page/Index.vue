@@ -1,7 +1,7 @@
 <template>
   <div>
     <trans-up-in-down-out>
-      <div>Home page</div>
+      <h1 class="">Home page</h1>
     </trans-up-in-down-out>
     <trans-link to="/about">About</trans-link>
   </div>
