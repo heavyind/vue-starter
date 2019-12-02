@@ -1,19 +1,20 @@
+// A note about this architechture
 <template>
   <div id="app">
-    <div v-if="!preloadDone">
-      <preloader></preloader>
-    </div>
-    <div v-else>
-      <modal></modal>
-      <transition
-        mode="out-in"
-        :duration="transCurrent.duration"
-        @beforeLeave="transBeforeLeave"
-        @beforeEnter="transBeforeEnter">
-          <router-view></router-view>
-      </transition>
-      <button @click="modalOpen">Open modal</button>
-    </div>
+    <transition mode="out-in" :duration="{enter: 0, leave: 900}">
+      <preloader v-if="!ready"></preloader>
+      <div v-else>
+        <modal></modal>
+        <transition
+          mode="out-in"
+          :duration="transCurrent.duration"
+          @beforeLeave="transBeforeLeave"
+          @beforeEnter="transBeforeEnter">
+            <router-view></router-view>
+        </transition>
+        <button @click="modalOpen">Open modal</button>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -37,6 +38,11 @@ export default {
       transCurrent: state => state.trans.current
     })
   },
+  data () {
+    return {
+      ready: false
+    };
+  },
   methods: {
     ...mapActions({
       preloadSetDone: "preload/setDone",
@@ -56,7 +62,7 @@ export default {
       this.transSetCurrentAsDefault();
     },
     mountedHook () {
-      setTimeout(this.preloadSetDone, 0);
+      setTimeout(this.preloadSetDone, 500);
     }
   },
   watch: {
@@ -68,9 +74,12 @@ export default {
           default: { ...transitions.default },
           current: { ...transitions.default }
         };
-        // ...otherwise, we jump the gun and set the `initFlag`, which controls
-        // `showOnce` values, before any meaningful content is rendered.
-        Vue.nextTick(() => this.transInitialize(transSettings));
+        Vue.nextTick(() => {
+          // ...otherwise, we jump the gun and set the `initFlag`, which controls
+          // `showOnce` values, before any meaningful content is rendered.
+          this.transInitialize(transSettings);
+          this.ready = true;
+        });
       }
     }
   },

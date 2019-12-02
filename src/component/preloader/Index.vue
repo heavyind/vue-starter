@@ -1,13 +1,24 @@
 <template>
   <div class="preloader">
-    <div class="preloader__content">Loading</div>
+    <transition
+      name="preloader__content">
+      <div v-if="loading" class="preloader__content">
+        Loading
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 
 export default {
-  name: "preloader"
+  name: "preloader",
+  computed: {
+    ...mapState({
+      loading: state => !state.preload.done
+    })
+  }
 };
 </script>
 
@@ -22,4 +33,9 @@ export default {
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
+    &-leave-active
+      opacity: 0
+      transition: opacity 0.4s linear
+    &-leave
+      opacity: 1
 </style>
