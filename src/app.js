@@ -15,6 +15,12 @@ export const createApp = function createApp() {
 
   sync(store, router);
 
+  router.beforeEach((to, from, next) => {
+    if (store.state.modal.open) { store.dispatch("modal/close"); }
+    store.dispatch("trans/hide");
+    next();
+  });
+
   const app = new Vue({
     router,
     store,

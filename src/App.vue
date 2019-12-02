@@ -1,7 +1,7 @@
 // A note about this architechture
 <template>
   <div id="app">
-    <transition mode="out-in" :duration="{enter: 0, leave: 900}">
+    <transition mode="out-in" :duration="settings.preload.duration">
       <preloader v-if="!ready"></preloader>
       <div v-else>
         <modal></modal>
@@ -21,7 +21,7 @@
 <script>
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
-import { transitions } from "@/settings";
+import * as settings from "@/settings";
 import Preloader from "@/component/preloader/Index.vue";
 import Modal from "@/component/modal/Index.vue";
 import ModalDummy from "@/component/modal/component/Dummy.vue";
@@ -36,7 +36,10 @@ export default {
     ...mapState({
       preloadDone: state => state.preload.done,
       transCurrent: state => state.trans.current
-    })
+    }),
+    settings () {
+      return settings;
+    }
   },
   data () {
     return {
@@ -71,12 +74,13 @@ export default {
       // the trans module should only be initialized when preloading is done...
       if (b === true) {
         const transSettings = {
-          default: { ...transitions.default },
-          current: { ...transitions.default }
+          default: { ...settings.transitions.default },
+          current: { ...settings.transitions.default }
         };
         Vue.nextTick(() => {
-          // ...otherwise, we jump the gun and set the `initFlag`, which controls
-          // `showOnce` values, before any meaningful content is rendered.
+          // ...otherwise, we jump the gun and set the store's `initFlag`, which 
+          // controls `showOnce` values, within the preload sequence rather than
+          // the main app sequence, and `showOnce` transitions never occur.
           this.transInitialize(transSettings);
           this.ready = true;
         });

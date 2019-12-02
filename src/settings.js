@@ -10,3 +10,7 @@ export const transitions = {
     duration: { leave: 0, enter: 0 }
   }
 };
+
+export const preload = {
+  duration: { leave: 400, enter: 0 }
+};
