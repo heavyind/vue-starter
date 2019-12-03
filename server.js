@@ -20,7 +20,9 @@ server.get("*", (req, res) => {
     clientManifest
   });
 
-  const context = { url: req.url };
+  const context = { 
+    url: req.url
+  };
 
   renderer.renderToString(context, (err, html) => {
     if (!isProduction) {

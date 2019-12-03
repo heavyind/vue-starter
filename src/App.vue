@@ -66,6 +66,7 @@ export default {
     },
     mountedHook () {
       setTimeout(this.preloadSetDone, 500);
+      document.title = this.$route.meta.title;
     }
   },
   watch: {
@@ -84,6 +85,11 @@ export default {
           this.transInitialize(transSettings);
           this.ready = true;
         });
+      }
+    },
+    "$route" () {
+      if (this.$route.meta && this.$route.meta.title) {
+        document.title = this.$route.meta.title;
       }
     }
   },
