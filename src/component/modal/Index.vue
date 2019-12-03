@@ -1,12 +1,12 @@
 <template>
-  <transition :duration="{ leave: closeDelay }">
-  <div role="dialog" v-if="open" class="modal" :style="style">
-    <component
-      v-if="settings"
-      :is="settings.component"
-      v-bind="settings.props">
-    </component>
-  </div>
+  <transition name="transitionName" :duration="{ leave: closeDelay }">
+    <div role="dialog" v-if="open" class="modal" :style="style">
+      <component
+        v-if="settings"
+        :is="settings.component"
+        v-bind="settings.props">
+      </component>
+    </div>
   </transition>
 </template>
 
@@ -17,6 +17,11 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   props: {
+    transitionName: {
+      type: String,
+      required: false,
+      default: ""
+    },
     backgroundColor: {
       type: String,
       required: false,

@@ -3,6 +3,7 @@
     <transition name="modal-dummy">
       <div v-if="open">
         Dummy modal component
+        <br>
         <button @click="modalClose">Close modal</button>
       </div>
     </transition>
