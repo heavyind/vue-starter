@@ -6,7 +6,7 @@
       <preloader v-if="!ready"></preloader>
       <div v-else>
         <modal></modal>
-        <trans-fade-in-fade-out :delay="200" :initOnly="true">
+        <trans-fade-in-fade-out :delay="250" :initOnly="true">
           <header>
             <nav>
               <ul>
@@ -46,6 +46,11 @@ export default {
     Modal,
     TransFadeInFadeOut
   },
+  data () {
+    return {
+      ready: false
+    };
+  },
   computed: {
     ...mapState({
       preloadDone: state => state.preload.done,
@@ -54,11 +59,6 @@ export default {
     settings () {
       return settings;
     }
-  },
-  data () {
-    return {
-      ready: false
-    };
   },
   methods: {
     ...mapActions({
@@ -100,15 +100,15 @@ export default {
     preloadDone (b) {
       if (b === true) {
         Vue.nextTick(() => {
-          // A proxy for `preloadDone`, required because `<trans>` components use
-          // `preloadDone`. If parent conditional rendering/transition logic is
+          // A proxy for `preloadDone`, required because `<preloader>` component
+          // uses `preloadDone`. If parent conditional rendering/transition logic is
           // not done after children, the children are pruned from the virtual DOM 
           // and updates never propagate (meaning child transitions never fire).
           this.ready = true;
         });
       }
     },
-    "$route" () {
+    $route () {
       if (this.$route.meta && this.$route.meta.title) {
         document.title = this.$route.meta.title;
       }
