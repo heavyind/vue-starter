@@ -7,6 +7,7 @@ const clientManifest = require("./dist/client-manifest.json");
 const serverBundlePath = path.resolve(__dirname, "dist/app.server.json");
 const skeletonPath = path.resolve(__dirname, "./src/skeleton.html");
 const server = express();
+const settings = require("./src/settings.cjs");
 
 
 server.use(express.static("./public"));
@@ -21,7 +22,9 @@ server.get("*", (req, res) => {
   });
 
   const context = { 
-    url: req.url
+    url: req.url,
+    title: settings.pageMeta[req.url]["title"],
+    metaDescription: settings.pageMeta[req.url]["metaDescription"]
   };
 
   renderer.renderToString(context, (err, html) => {

@@ -1,4 +1,3 @@
-// A note about this architechture
 <template>
   <div id="app">
     <transition mode="out-in" :duration="settings.preload.duration">
@@ -66,7 +65,6 @@ export default {
     },
     mountedHook () {
       setTimeout(this.preloadSetDone, 500);
-      document.title = this.$route.meta.title;
     }
   },
   watch: {
