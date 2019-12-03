@@ -1,8 +1,7 @@
 <template>
   <div class="trans-up-in-down-out-wrap" :style="wrapStyle">
     <trans name="trans-up-in-down-out"
-      :initOnly="initOnly"
-      :delay="delay"
+      v-bind="$props"
       :beforeEnter="beforeEnter"
       :afterEnter="afterEnter"
       :beforeLeave="beforeLeave"

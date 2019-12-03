@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <transition mode="out-in" :duration="settings.preload.duration">
+    <transition mode="out-in"
+      :duration="settings.preload.duration"
+      @afterEnter="preloadAfterEnter">
       <preloader v-if="!ready"></preloader>
       <div v-else>
         <modal></modal>
-        <header>
-          <nav>
-            <ul>
-              <!-- explicit durations can be set on <trans-link> -->
-              <li><trans-link to="/">Home</trans-link></li>
-              <li><trans-link to="/about">About</trans-link></li>
-            </ul>
-          </nav>
-          <button @click="modalOpen">Open modal</button>
-        </header>
+        <trans-fade-in-fade-out :delay="200" :initOnly="true">
+          <header>
+            <nav>
+              <ul>
+                <!-- explicit durations can be set on <trans-link> -->
+                <li><trans-link to="/">Home</trans-link></li>
+                <li><trans-link to="/about">About</trans-link></li>
+              </ul>
+            </nav>
+            <button @click="modalOpen">Open modal</button>
+          </header>
+        </trans-fade-in-fade-out>
         <transition
           mode="out-in"
           :duration="transCurrent.duration"
@@ -33,12 +37,14 @@ import * as settings from "@/settings";
 import Preloader from "@/component/preloader/Index.vue";
 import Modal from "@/component/modal/Index.vue";
 import ModalDummy from "@/component/modal/component/Dummy.vue";
+import TransFadeInFadeOut from "@/component/trans/trans-wrapper/FadeInFadeOut.vue";
 
 export default {
   name: "app",
   components: {
     Preloader,
-    Modal
+    Modal,
+    TransFadeInFadeOut
   },
   computed: {
     ...mapState({
@@ -72,6 +78,18 @@ export default {
       this.transShow();
       this.transSetCurrentAsDefault();
     },
+    preloadAfterEnter () {
+      // Since actual app content doesn't render until preloading transition
+      // out is complete, the trans module should only be initialized when 
+      // this is done. Otherwise, we jump the gun and set the store's `initFlag`
+      // early, within the preload sequence rather than within the main app, so
+      // `showOnce` transitions never occur
+      const transSettings = {
+        default: { ...settings.transitions.default },
+        current: { ...settings.transitions.default }
+      };
+      this.transInitialize(transSettings);
+    },
     mountedHook () {
       // This is set to a timer for the sake of example. Change it to suit
       // your own requirements (e.g., an array of images' `onload`).
@@ -80,18 +98,8 @@ export default {
   },
   watch: {
     preloadDone (b) {
-      // Since actual app content doesn't render until preloading is complete,
-      // the trans module should only be initialized when preloading is done...
       if (b === true) {
-        const transSettings = {
-          default: { ...settings.transitions.default },
-          current: { ...settings.transitions.default }
-        };
         Vue.nextTick(() => {
-          // ...otherwise, we jump the gun and set the store's `initFlag`, which 
-          // controls `showOnce` values, within the preload sequence rather than
-          // the main app sequence, and `showOnce` transitions never occur.
-          this.transInitialize(transSettings);
           // A proxy for `preloadDone`, required because `<trans>` components use
           // `preloadDone`. If parent conditional rendering/transition logic is
           // not done after children, the children are pruned from the virtual DOM 
