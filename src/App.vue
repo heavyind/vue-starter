@@ -4,6 +4,13 @@
       <preloader v-if="!ready"></preloader>
       <div v-else>
         <modal></modal>
+        <button @click="modalOpen">Open modal</button>
+        <nav>
+          <ul>
+            <li><trans-link to="/about">About</trans-link></li>
+            <li><trans-link to="/" :trans="{duration: 0}">Home</trans-link></li>
+          </ul>
+        </nav>
         <transition
           mode="out-in"
           :duration="transCurrent.duration"
@@ -11,7 +18,6 @@
           @beforeEnter="transBeforeEnter">
             <router-view></router-view>
         </transition>
-        <button @click="modalOpen">Open modal</button>
       </div>
     </transition>
   </div>
