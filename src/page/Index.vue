@@ -3,7 +3,6 @@
     <trans-up-in-down-out>
       <h1>Home page</h1>
     </trans-up-in-down-out>
-    <trans-link to="/about">About</trans-link>
   </div>
 </template>
 
