@@ -1,5 +1,5 @@
 <template>
-  <trans name="trans-fade-in-fade-out" :beforeLeave="beforeEnter">
+  <trans name="trans-fade-in-fade-out">
     <slot></slot>
   </trans>
 </template>
@@ -11,12 +11,7 @@ import mixinTrans from "../mixin/trans";
 
 export default {
   name: "trans-fade-in-fade-out",
-  mixins: [mixinTrans],
-  methods: {
-    beforeEnter () {
-      console.log("Sanity check");
-    }
-  }
+  mixins: [mixinTrans]
 };
 </script>
 
