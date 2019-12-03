@@ -1,6 +1,17 @@
 // "Pretty" styles. Delete to clear.
 
-#app
+#app > div:not(.preloader)
+  height: calc(100% - 130px)
+
+html, body
+  position: relative
+  height: 100%
+  width: 100%
+
+.page-index, .page-about
+  position: relative
+  top: 50%
+  transform: translateY(-50%)
 
 header
   display: flex
@@ -25,9 +36,10 @@ nav > ul > li
 a
   color: white
   &:visited
-    color: #444
+    color: white
 
 div
+  position: relative
   text-align: center
 
 h1
