@@ -62,11 +62,7 @@ export default {
   },
   watch: {
     open (c) {
-      if (c === true) {
-        Vue.nextTick(() => this.openProxy = c);
-      } else {
-        this.openProxy = c;
-      }
+      Vue.nextTick(() => this.openProxy = c);
     }
   },
   mounted () {
