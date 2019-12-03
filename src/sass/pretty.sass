@@ -22,6 +22,17 @@ html, body
   top: 50%
   transform: translateY(-50%)
 
+.trans-modal-enter-active
+  opacity: 1
+  transition: opacity 0.2s linear
+
+.trans-modal-enter
+  opacity: 0
+
+.trans-modal-leave-active
+  opacity: 0
+  transition: opacity 0.4s linear 0.0s
+
 header
   display: flex
   width: 100%
