@@ -1,5 +1,5 @@
 <template>
-  <trans name="trans-fade-in-fade-out">
+  <trans name="trans-fade-in-fade-out" v-bind="$props">
     <slot></slot>
   </trans>
 </template>
