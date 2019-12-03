@@ -1,5 +1,5 @@
 <template>
-  <transition name="transitionName" :duration="{ leave: closeDelay }">
+  <transition :name="transitionName" :duration="{ leave: closeDelay }">
     <div role="dialog" v-if="open" class="modal" :style="style">
       <component
         v-if="settings"
