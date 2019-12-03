@@ -4,13 +4,15 @@
       <preloader v-if="!ready"></preloader>
       <div v-else>
         <modal></modal>
-        <button @click="modalOpen">Open modal</button>
-        <nav>
-          <ul>
-            <li><trans-link to="/about">About</trans-link></li>
-            <li><trans-link to="/" :trans="{duration: 0}">Home</trans-link></li>
-          </ul>
-        </nav>
+        <header>
+          <nav>
+            <ul>
+              <li><trans-link to="/about">About</trans-link></li>
+              <li><trans-link to="/" :trans="{duration: 0}">Home</trans-link></li>
+            </ul>
+          </nav>
+          <button @click="modalOpen">Open modal</button>
+        </header>
         <transition
           mode="out-in"
           :duration="transCurrent.duration"
