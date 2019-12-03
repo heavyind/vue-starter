@@ -64,6 +64,8 @@ export default {
       this.transSetCurrentAsDefault();
     },
     mountedHook () {
+      // This is set to a timer for the sake of example. Change it to suit
+      // your own requirements (e.g., an array of images' `onload`).
       setTimeout(this.preloadSetDone, 500);
     }
   },
@@ -81,6 +83,10 @@ export default {
           // controls `showOnce` values, within the preload sequence rather than
           // the main app sequence, and `showOnce` transitions never occur.
           this.transInitialize(transSettings);
+          // A proxy for `preloadDone`, required because `<trans>` components use
+          // `preloadDone`. If parent conditional rendering/transition logic is
+          // not done after children, the children are pruned from the virtual DOM 
+          // and updates never propagate (meaning child transitions never fire).
           this.ready = true;
         });
       }
