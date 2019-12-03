@@ -1,12 +1,16 @@
 <template>
   <div class="modal-dummy">
-    Dummy modal component
-    <button @click="modalClose">Close modal</button>
+    <transition name="modal-dummy">
+      <div v-if="open">
+        Dummy modal component
+        <button @click="modalClose">Close modal</button>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 
 export default {
@@ -14,6 +18,11 @@ export default {
   methods: {
     ...mapActions({
       modalClose: "modal/close"
+    })
+  },
+  computed: {
+    ...mapState({
+      open: state => state.modal.open
     })
   }
 };
@@ -23,4 +32,8 @@ export default {
 
 .modal-dummy
   color: white
+
+.modal-dummy-leave-active
+  opacity: 0
+  transition: opacity 0.5s linear
 </style>

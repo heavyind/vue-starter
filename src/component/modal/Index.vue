@@ -1,4 +1,5 @@
 <template>
+  <transition :duration="{ leave: closeDelay }">
   <div role="dialog" v-if="open" class="modal" :style="style">
     <component
       v-if="settings"
@@ -6,9 +7,11 @@
       v-bind="settings.props">
     </component>
   </div>
+  </transition>
 </template>
 
 <script>
+import Vue from "vue";
 import { mapState, mapActions } from "vuex";
 
 
@@ -18,11 +21,21 @@ export default {
       type: String,
       required: false,
       default: "rgba(0, 0, 0, 1.0)"
+    },
+    closeDelay: {
+      type: Number,
+      required: false,
+      default: 0
     }
+  },
+  data () {
+    return {
+      open: false
+    };
   },
   computed: {
     ...mapState({
-      open: state => state.modal.open,
+      _open: state => state.modal.open,
       settings: state => state.modal.settings
     }),
     style () {
@@ -37,6 +50,14 @@ export default {
     }),
     handleKeyCodes (e) {
       if (e.keyCode === 27) { this.close(); }
+    }
+  },
+  watch: {
+    _open (c) {
+      Vue.nextTick(() => this.open = c);
+    },
+    open (c) {
+      console.log("open changed to ", c);
     }
   },
   mounted () {
