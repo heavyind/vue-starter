@@ -35,12 +35,13 @@ export default {
 
 .modal-dummy-enter-active
   opacity: 1
-  transition: opacity 0.2s linear 0.2s
+  transition: opacity 0.2s linear 0.35s
 
 .modal-dummy-enter
   opacity: 0
 
 .modal-dummy-leave-active
   opacity: 0
-  transition: opacity 0.5s linear
+  transition: opacity 0.35s linear
 </style>
+
