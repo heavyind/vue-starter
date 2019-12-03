@@ -1,4 +1,10 @@
-// "Pretty" styles. Delete to clear.
+// Pretty styles.
+
+// These are awful and do not use them, certainly not with these
+// selectors.  They are as such in order to not pollute the base
+// project's markup. They exist in order to give the user a bet-
+// ter idea of what slick things the base project can help make. 
+// Delete this file and omit it from `main.sass`!
 
 #app > div:not(.preloader)
   height: calc(100% - 130px)
@@ -7,34 +13,6 @@ html, body
   position: relative
   height: 100%
   width: 100%
-
-.page-index, .page-about
-  position: relative
-  top: 50%
-  transform: translateY(-50%)
-
-.modal-dummy
-  position: relative
-  height: 100%
-
-.modal-dummy > div
-  position: relative
-  top: 50%
-  transform: translateY(-50%)
-
-.modal-dummy > div > div
-  padding-bottom: 2em
-
-.trans-modal-enter-active
-  opacity: 1
-  transition: opacity 0.35s linear
-
-.trans-modal-enter
-  opacity: 0
-
-.trans-modal-leave-active
-  opacity: 0
-  transition: opacity 0.35s linear 0.3s
 
 header
   display: flex
@@ -83,4 +61,32 @@ button
   transition: border-color 0.2s linear
   &:hover
     border: 1px solid white
+
+.page-index, .page-about
+  position: relative
+  top: 50%
+  transform: translateY(-50%)
+
+.modal-dummy
+  position: relative
+  height: 100%
+
+.modal-dummy > div
+  position: relative
+  top: 50%
+  transform: translateY(-50%)
+
+.modal-dummy > div > div
+  padding-bottom: 2em
+
+.trans-modal-enter-active
+  opacity: 1
+  transition: opacity 0.35s linear
+
+.trans-modal-enter
+  opacity: 0
+
+.trans-modal-leave-active
+  opacity: 0
+  transition: opacity 0.35s linear 0.3s
 
