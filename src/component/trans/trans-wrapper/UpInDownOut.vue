@@ -1,6 +1,6 @@
 <template>
-  <div class="up-and-in-wrap" :style="wrapStyle">
-    <trans name="up-and-in"
+  <div class="trans-up-in-down-out-wrap" :style="wrapStyle">
+    <trans name="trans-up-in-down-out"
       :initOnly="initOnly"
       :delay="delay"
       :beforeEnter="beforeEnter"
@@ -18,6 +18,7 @@ import mixinTrans from "../mixin/trans";
 
 
 export default {
+  name: "trans-up-in-down-out",
   mixins: [mixinTrans],
   data () {
     return {
@@ -54,16 +55,13 @@ export default {
 
 $easing-function: cubic-bezier(0, 0.91, 0.35, 1)
 
-.up-and-in-wrap
+.trans-up-in-down-out-wrap
   overflow: hidden
 
-.up-and-in-enter-active, .up-and-in-leave-active
+.trans-up-in-down-out-enter-active, .trans-up-in-down-out-leave-active
   transition: transform 0.70s $easing-function
 
-.up-and-in-enter
-  transform: translateY(100%)
-
-.up-and-in-leave-active
+.trans-up-in-down-out-enter, .trans-up-in-down-out-leave-active
   transform: translateY(100%)
 
 </style>

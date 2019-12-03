@@ -1,13 +1,18 @@
 <template>
   <div class="page-about">
-    About page
+    <trans-fade-in-fade-out>
+      <h1>About page</h1>
+    </trans-fade-in-fade-out>
   </div>
 </template>
 
 <script>
-
+import TransFadeInFadeOut from "@/component/trans/trans-wrapper/FadeInFadeOut.vue";
 
 export default {
-  name: "page-about"
+  name: "page-about",
+  components: {
+    TransFadeInFadeOut
+  }
 };
 </script>
