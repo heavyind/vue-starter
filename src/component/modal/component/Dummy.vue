@@ -2,8 +2,7 @@
   <div class="modal-dummy">
     <transition appear name="modal-dummy">
       <div v-if="open">
-        Dummy modal component
-        <br>
+        <div>Dummy modal component</div>
         <button @click="modalClose">Close modal</button>
       </div>
     </transition>
