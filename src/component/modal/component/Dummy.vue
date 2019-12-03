@@ -1,6 +1,6 @@
 <template>
   <div class="modal-dummy">
-    <transition appear name="modal-dummy">
+    <transition appear name="trans-modal-dummy">
       <div v-if="open">
         <div>Dummy modal component</div>
         <button @click="modalClose">Close modal</button>
@@ -33,14 +33,14 @@ export default {
 .modal-dummy
   color: white
 
-.modal-dummy-enter-active
+.trans-modal-dummy-enter-active
   opacity: 1
   transition: opacity 0.2s linear 0.35s
 
-.modal-dummy-enter
+.trans-modal-dummy-enter
   opacity: 0
 
-.modal-dummy-leave-active
+.trans-modal-dummy-leave-active
   opacity: 0
   transition: opacity 0.35s linear
 </style>
