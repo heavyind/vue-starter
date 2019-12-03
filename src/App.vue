@@ -7,8 +7,8 @@
         <header>
           <nav>
             <ul>
-              <li><trans-link to="/about">About</trans-link></li>
               <li><trans-link to="/" :trans="{duration: 0}">Home</trans-link></li>
+              <li><trans-link to="/about">About</trans-link></li>
             </ul>
           </nav>
           <button @click="modalOpen">Open modal</button>
