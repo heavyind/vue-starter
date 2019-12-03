@@ -1,6 +1,6 @@
 <template>
   <transition :name="transitionName" :duration="{ leave: closeDelay }">
-    <div role="dialog" v-if="open" class="modal" :style="style">
+    <div role="dialog" v-if="openProxy" class="modal" :style="style">
       <component
         v-if="settings"
         :is="settings.component"
@@ -28,19 +28,19 @@ export default {
       default: "rgba(0, 0, 0, 1.0)"
     },
     closeDelay: {
-      type: Number,
+      type: [Number, null],
       required: false,
-      default: 0
+      default: null
     }
   },
   data () {
     return {
-      open: false
+      openProxy: false
     };
   },
   computed: {
     ...mapState({
-      _open: state => state.modal.open,
+      open: state => state.modal.open,
       settings: state => state.modal.settings
     }),
     style () {
@@ -50,6 +50,9 @@ export default {
     }
   },
   methods: {
+    beforeLeave () {
+      console.log("About to leave");
+    },
     ...mapActions({
       close: "modal/close"
     }),
@@ -58,11 +61,12 @@ export default {
     }
   },
   watch: {
-    _open (c) {
-      Vue.nextTick(() => this.open = c);
-    },
     open (c) {
-      console.log("open changed to ", c);
+      if (c === true) {
+        Vue.nextTick(() => this.openProxy = c);
+      } else {
+        this.openProxy = c;
+      }
     }
   },
   mounted () {
@@ -83,4 +87,5 @@ export default {
   width: 100vw
   height: 100vh
   z-index: 110
+
 </style>

@@ -5,7 +5,7 @@
       @afterEnter="preloadAfterEnter">
       <preloader v-if="!ready"></preloader>
       <div v-else>
-        <modal transitionName="trans-modal" :closeDelay="500"></modal>
+        <modal transitionName="trans-modal"></modal>
         <trans-fade-in-fade-out :delay="250" :initOnly="true">
           <header>
             <nav>
