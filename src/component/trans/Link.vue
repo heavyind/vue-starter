@@ -11,12 +11,19 @@
 <script>
 import { mapActions } from "vuex";
 import Vue from "vue";
-import transLinkMixin from "./mixin/trans-link";
 
 
 export default {
-  mixins: [transLinkMixin],
   props: {
+    to: {
+      required: true,
+      type: String
+    },
+    duration: {
+      required: false,
+      type: [Number, null],
+      default: null
+    },
     activeClass: {
       type: String,
       required: false,
@@ -36,11 +43,13 @@ export default {
   methods: {
     ...mapActions({
       transHide: "trans/hide",
-      transSetCurrent: "trans/setCurrent"
+      setExplicitDuration: "trans/setExplicitDuration"
     }),
     handleClick(e) {
       e.preventDefault();
-      if (this.trans) { this.transSetCurrent(this.trans); }
+      if (this.duration !== null) {
+        this.setExplicitDuration(this.duration);
+      }
       if (this.to !== this.$route.path) {
         Vue.nextTick(() => {
           this.transHide();

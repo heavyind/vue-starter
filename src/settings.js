@@ -3,7 +3,7 @@
 export const transitions = {
   default: {
     name: "default",
-    duration: { leave: 800, enter: 0 }
+    duration: { leave: 700, enter: 0 }
   },
   instant: {
     name: "instant",
