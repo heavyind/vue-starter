@@ -2,10 +2,10 @@
   <div class="trans-up-in-down-out-wrap" :style="wrapStyle">
     <trans name="trans-up-in-down-out"
       v-bind="$props"
-      :beforeEnter="beforeEnter"
-      :afterEnter="afterEnter"
-      :beforeLeave="beforeLeave"
-      :afterLeave="afterLeave">
+      :beforeEnter="_beforeEnter"
+      :afterEnter="_afterEnter"
+      :beforeLeave="_beforeLeave"
+      :afterLeave="_afterLeave">
       <slot></slot>
     </trans>
   </div>
@@ -13,28 +13,30 @@
 
 
 <script>
-import mixinTrans from "../mixin/trans";
+import Trans from "@/component/trans/Trans.vue";
+import mixinTransProps from "../mixin/trans-props";
 
 
 export default {
   name: "trans-up-in-down-out",
-  mixins: [mixinTrans],
+  mixins: [mixinTransProps],
+  components: { Trans },
   data () {
     return {
       transitioning: false
     };
   },
   methods: {
-    beforeEnter () {
+    _beforeEnter () {
       this.transitioning = true;
     },
-    afterEnter () {
+    _afterEnter () {
       this.transitioning = false;
     },
-    beforeLeave () {
+    _beforeLeave () {
       this.transitioning = true;
     },
-    afterLeave () {
+    _afterLeave () {
       this.transitioning = false;
     }
   },

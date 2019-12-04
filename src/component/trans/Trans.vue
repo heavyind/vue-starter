@@ -1,7 +1,7 @@
 <template>
   <transition
     :appear="appear"
-    :name="_name"
+    :name="name"
     @beforeEnter="_beforeEnter"
     @enter="_enter"
     @after-enter="_afterEnter"
@@ -10,7 +10,7 @@
     @leave="_leave"
     @after-leave="_afterLeave"
     @leave-cancelled="_leaveCancelled">
-    <div v-show="state">
+    <div ref="el" v-show="state">
       <slot></slot>
     </div>
   </transition>
@@ -18,80 +18,32 @@
 
 
 <script>
-import { mapState } from "vuex";
+import Vue from "vue";
+import { mapState, mapActions } from "vuex";
+import { normalizeTime } from "./util";
+import mixinTransProps from "./mixin/trans-props";
 
 
 export default {
   name: "component-trans",
-  props: {
-    initOnly: {
-      required: false,
-      type: Boolean,
-      default: false
-    },
-    delay: {
-      required: false,
-      type: [Number, Object],
-      default: 0 
-    },
-    name: {
-      required: false,
-      type: String
-    },
-    duration: {
-      required: false,
-      type: [Number, Object]
-    },
-    beforeEnter: {
-      type: Function,
-      required: false
-    },
-    enter: {
-      type: Function,
-      required: false
-    },
-    afterEnter: {
-      type: Function,
-      required: false
-    },
-    enterCancelled: {
-      type: Function,
-      required: false
-    },
-    beforeLeave: {
-      type: Function,
-      required: false
-    },
-    leave: {
-      type: Function,
-      required: false
-    },
-    afterLeave: {
-      type: Function,
-      required: false
-    },
-    leaveCancelled: {
-      type: Function,
-      required: false
-    }
-  },
+  mixins: [mixinTransProps],
   computed: {
     ...mapState({
-      transCurrentName: state => state.trans.current.name,
       transShow: state => state.trans.show,
       transShowOnce: state => state.trans.initFlag
     }),
     state () {
       return this.initOnly === true ? this.transShowOnce : this.transShow;
     },
-    _name () {
-      return this.name === undefined ? this.transCurrentName : this.name;
-    },
     appear () {
       return !this.initOnly;
     }
   },
   methods: {
+    normalizeTime,
+    ...mapActions({
+      registerDuration: "trans/registerDuration"
+    }),
     addDuration (el, duration) {
       el.style.transitionDuration = `${duration}ms`;
     },
@@ -99,13 +51,15 @@ export default {
       el.style.transitionDelay = `${delay}ms`;
     },
     _beforeEnter (el) {
-      const delay = typeof this.delay === "number" ? this.delay : this.delay.enter;
-      this.addDelay(el, delay);
-      if (!(this.duration === undefined)) {
+      if (this.delay !== null) {
+        console.log("The delay is", this.delay);
+        const delay = typeof this.delay === "number" ? this.delay : this.delay.enter;
+        this.addDelay(el, delay);
+      }
+      if (this.duration !== null) {
         const duration = typeof this.duration === "number" ? this.duration : this.duration.enter;
         this.addDuration(el, duration);
       }
-
       if (this.beforeEnter) { this.beforeEnter(); }
     },
     _enter () {
@@ -118,13 +72,14 @@ export default {
       if (this.enterCancelled) { this.enterCancelled(); }
     },
     _beforeLeave (el) {
-      const delay = typeof this.delay === "number" ? this.delay : this.delay.leave;
-      this.addDelay(el, delay);
-      if (!(this.duration === undefined)) {
+      if (this.delay !== null) {
+        const delay = typeof this.delay === "number" ? this.delay : this.delay.leave;
+        this.addDelay(el, delay);
+      }
+      if (this.duration !== null) {
         const duration = typeof this.duration === "number" ? this.duration : this.duration.leave;
         this.addDuration(el, duration);
       }
-
       if (this.beforeLeave) { this.beforeLeave(); }
     },
     _leave () {
@@ -135,6 +90,20 @@ export default {
     },
     _leaveCancelled () {
       if (this.leaveCancelled) { this.leaveCancelled(); }
+    }
+  },
+  watch: {
+    transShow (b) {
+      if (!b) {
+        const f = () => {
+          const computedDur = window.getComputedStyle(this.$refs.el).transitionDuration;
+          const computedDel = window.getComputedStyle(this.$refs.el).transitionDelay;
+          const normalizedDur = this.normalizeTime(computedDur);
+          const normalizedDel = this.normalizeTime(computedDel);
+          this.registerDuration(normalizedDur + normalizedDel);
+        };
+        Vue.nextTick(f);
+      }
     }
   }
 };

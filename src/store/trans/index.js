@@ -1,17 +1,10 @@
 
-const DEFAULT_TRANS = {
-  name: "default",
-  duration: { enter: 0, leave: 0 }
-};
-
-
 const state = {
   show: false,
   initFlag: false,
-  current: DEFAULT_TRANS,
-  default: DEFAULT_TRANS
+  explicitDuration: null,
+  durationRegister: []
 };
-
 
 const mutations = {
 
@@ -27,12 +20,20 @@ const mutations = {
     state.initFlag = true;
   },
 
-  _setCurrent (state, trans) {
-    state.current = trans;
+  _setExplicitDuration (state, d) {
+    state.explicitDuration = d;
   },
 
-  _setDefault (state, trans) {
-    state.default = trans;
+  _clearExplicitDuration (state) {
+    state.explicitDuration = null;
+  },
+
+  _registerDuration (state, d) {
+    state.durationRegister.push(d);
+  },
+
+  _clearDurationRegister (state) {
+    state.durationRegister = [];
   }
 };
 
@@ -47,30 +48,29 @@ const actions = {
     commit("_hide");
   },
 
-  setCurrent ({ commit }, trans) {
-    commit("_setCurrent", trans);
+  setExplicitDuration ({ commit }, d) {
+    commit("_setExplicitDuration", d);
   },
 
-  setCurrentAsDefault ({ commit, state }) {
-    commit("_setCurrent", state.default);
+  registerDuration ({ commit }, t) {
+    commit("_registerDuration", t);
   },
 
-  setDefault ({ commit }, trans) {
-    commit("_setDefault", trans);
+  resetNavigation ({ commit }) {
+    commit("_clearExplicitDuration");
+    commit("_clearDurationRegister");
   },
 
-  initialize ({ commit }, settings) {
-
-    if (settings && settings.current) {
-      commit("_setCurrent", settings.current);
-    }
-
-    if (settings && settings.default) {
-      commit("_setDefault", settings.default);
-    }
-
+  initialize ({ commit }) {
     commit("_show");
     commit("_triggerInitFlag");
+  }
+};
+
+const getters = {
+  routeDuration (state) {
+    if (state.explicitDuration !== null) { return state.explicitDuration; }
+    return Math.max(...state.durationRegister);
   }
 };
 
@@ -79,5 +79,6 @@ export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 };

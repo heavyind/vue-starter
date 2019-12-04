@@ -6,7 +6,6 @@
       <preloader v-if="!ready"></preloader>
       <div v-else>
         <modal transitionName="trans-modal"></modal>
-        <trans-fade-in-fade-out :delay="250" :initOnly="true">
           <header>
             <nav>
               <ul>
@@ -17,8 +16,6 @@
             </nav>
             <button @click="modalOpen">Open modal</button>
           </header>
-        </trans-fade-in-fade-out>
-        <!-- trans-router-view -->
         <trans-router-view></trans-router-view>
       </div>
     </transition>
@@ -71,11 +68,7 @@ export default {
       // this is done. Otherwise, we jump the gun and set the store's `initFlag`
       // early, within the preload sequence rather than within the main app, so
       // `showOnce` transitions never occur
-      const transSettings = {
-        default: { ...settings.transitions.default },
-        current: { ...settings.transitions.default }
-      };
-      this.transInitialize(transSettings);
+      this.transInitialize();
     },
     mountedHook () {
       // This is set to a timer for the sake of example. Change it to suit

@@ -1,6 +1,6 @@
 <template>
   <div class="page-about">
-    <trans-fade-in-fade-out>
+    <trans-fade-in-fade-out :duration="350">
       <h1>About page</h1>
     </trans-fade-in-fade-out>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <transition
     mode="out-in"
-    :duration="transCurrent.duration"
+    :duration="routeDuration"
     @beforeLeave="transBeforeLeave"
     @beforeEnter="transBeforeEnter">
       <router-view></router-view>
@@ -9,28 +9,28 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 
 
 export default {
   name: "trans-router-view",
   computed: {
-    ...mapState({
-      transCurrent: state => state.trans.current
+    ...mapGetters({
+      routeDuration: "trans/routeDuration"
     })
   },
   methods: {
     ...mapActions({
       transHide: "trans/hide",
       transShow: "trans/show",
-      transSetCurrentAsDefault: "trans/setCurrentAsDefault"
+      transReset: "trans/resetNavigation"
     }),
     transBeforeLeave () {
       this.transHide();
     },
     transBeforeEnter () {
       this.transShow();
-      this.transSetCurrentAsDefault();
+      this.transReset();
     }
   }
 };
