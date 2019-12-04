@@ -59,10 +59,14 @@ $easing-function: cubic-bezier(0, 0.91, 0.35, 1)
 .trans-up-in-down-out-wrap
   overflow: hidden
 
-.trans-up-in-down-out-enter-active, .trans-up-in-down-out-leave-active
-  transition: transform 0.70s $easing-function
+.trans-up-in-down-out-enter-active, 
+  transition: transform  $easing-function
 
-.trans-up-in-down-out-enter, .trans-up-in-down-out-leave-active
+.trans-up-in-down-out-enter
   transform: translateY(100%)
+
+.trans-up-in-down-out-leave-active
+  transform: translateY(100%)
+  transition: transform  $easing-function
 
 </style>
