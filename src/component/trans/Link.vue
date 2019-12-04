@@ -1,5 +1,10 @@
 <template>
-  <a @click="handleClick" :href="to"><slot></slot></a>
+  <a
+    @click="handleClick"
+    :class="classes"
+    :href="to">
+    <slot></slot>
+  </a>
 </template>
 
 
@@ -11,6 +16,23 @@ import transLinkMixin from "./mixin/trans-link";
 
 export default {
   mixins: [transLinkMixin],
+  props: {
+    activeClass: {
+      type: String,
+      required: false,
+      default: "trans-link-active"
+    }
+  },
+  computed: {
+    isExact () {
+      return this.$route.path === this.to ? true : false;
+    },
+    classes () {
+      return {
+        [this.activeClass]: this.isExact
+      };  
+    }
+  },
   methods: {
     ...mapActions({
       transHide: "trans/hide",
