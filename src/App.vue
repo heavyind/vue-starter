@@ -18,13 +18,8 @@
             <button @click="modalOpen">Open modal</button>
           </header>
         </trans-fade-in-fade-out>
-        <transition
-          mode="out-in"
-          :duration="transCurrent.duration"
-          @beforeLeave="transBeforeLeave"
-          @beforeEnter="transBeforeEnter">
-            <router-view></router-view>
-        </transition>
+        <!-- trans-router-view -->
+        <trans-router-view></trans-router-view>
       </div>
     </transition>
   </div>
@@ -38,13 +33,16 @@ import Preloader from "@/component/preloader/Index.vue";
 import Modal from "@/component/modal/Index.vue";
 import ModalDummy from "@/component/modal/component/Dummy.vue";
 import TransFadeInFadeOut from "@/component/trans/trans-wrapper/FadeInFadeOut.vue";
+import TransRouterView from "@/component/trans/TransRouterView.vue";
+
 
 export default {
   name: "app",
   components: {
     Preloader,
     Modal,
-    TransFadeInFadeOut
+    TransFadeInFadeOut,
+    TransRouterView
   },
   data () {
     return {
@@ -53,8 +51,7 @@ export default {
   },
   computed: {
     ...mapState({
-      preloadDone: state => state.preload.done,
-      transCurrent: state => state.trans.current
+      preloadDone: state => state.preload.done
     }),
     settings () {
       return settings;
@@ -63,20 +60,10 @@ export default {
   methods: {
     ...mapActions({
       preloadSetDone: "preload/setDone",
-      transInitialize: "trans/initialize",
-      transShow: "trans/show",
-      transHide: "trans/hide",
-      transSetCurrentAsDefault: "trans/setCurrentAsDefault"
+      transInitialize: "trans/initialize"
     }),
     modalOpen (component) {
       this.$store.dispatch("modal/openWith", { component: ModalDummy });
-    },
-    transBeforeLeave () {
-      this.transHide();
-    },
-    transBeforeEnter () {
-      this.transShow();
-      this.transSetCurrentAsDefault();
     },
     preloadAfterEnter () {
       // Since actual app content doesn't render until preloading transition
