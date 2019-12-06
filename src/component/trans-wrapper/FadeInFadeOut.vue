@@ -6,13 +6,12 @@
 
 
 <script>
-import Trans from "@/component/trans/Trans.vue";
-import mixinTransProps from "@/component/trans/mixin/trans-props";
+import VueTrans from "@heavyind/vue-trans";
+
 
 export default {
   name: "trans-fade-in-fade-out",
-  mixins: [mixinTransProps],
-  components: { Trans }
+  mixins: [VueTrans.transProps]
 };
 </script>
 

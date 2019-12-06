@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TransUpInDownOut from "@/component/trans/trans-wrapper/UpInDownOut.vue";
+import TransUpInDownOut from "@/component/trans-wrapper/UpInDownOut.vue";
 
 export default {
   name: "page-index",
