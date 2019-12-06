@@ -29,8 +29,7 @@ import * as settings from "@/settings";
 import Preloader from "@/component/preloader/Index.vue";
 import Modal from "@/component/modal/Index.vue";
 import ModalDummy from "@/component/modal/component/Dummy.vue";
-import TransFadeInFadeOut from "@/component/trans/trans-wrapper/FadeInFadeOut.vue";
-import TransRouterView from "@/component/trans/TransRouterView.vue";
+import TransFadeInFadeOut from "@/component/trans-wrapper/FadeInFadeOut.vue";
 
 
 export default {
@@ -38,8 +37,7 @@ export default {
   components: {
     Preloader,
     Modal,
-    TransFadeInFadeOut,
-    TransRouterView
+    TransFadeInFadeOut
   },
   data () {
     return {
@@ -56,8 +54,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      preloadSetDone: "preload/setDone",
-      transInitialize: "trans/initialize"
+      preloadSetDone: "preload/setDone"
     }),
     modalOpen (component) {
       this.$store.dispatch("modal/openWith", { component: ModalDummy });
