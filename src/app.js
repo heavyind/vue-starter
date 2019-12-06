@@ -3,10 +3,8 @@ import App from "./App.vue";
 import { createRouter } from "@/router";
 import { createStore } from "@/store/store";
 import { sync } from "vuex-router-sync";
-import TransLink from "@/component/trans/Link.vue";
+import VueTrans from "@heavyind/vue-trans";
 
-
-Vue.component("trans-link", TransLink);
 
 export const createApp = function createApp() {
 
@@ -14,6 +12,7 @@ export const createApp = function createApp() {
   const store = createStore();
 
   sync(store, router);
+  Vue.use(VueTrans, store);
 
   router.beforeEach((to, from, next) => {
     if (store.state.modal.open) { store.dispatch("modal/close"); }

@@ -13,14 +13,12 @@
 
 
 <script>
-import Trans from "@/component/trans/Trans.vue";
-import mixinTransProps from "../mixin/trans-props";
+import VueTrans from "@heavyind/vue-trans";
 
 
 export default {
   name: "trans-up-in-down-out",
-  mixins: [mixinTransProps],
-  components: { Trans },
+  mixins: [VueTrans.transProps],
   data () {
     return {
       transitioning: false

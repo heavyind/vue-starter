@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TransFadeInFadeOut from "@/component/trans/trans-wrapper/FadeInFadeOut.vue";
+import TransFadeInFadeOut from "@/component/trans-wrapper/FadeInFadeOut.vue";
 
 export default {
   name: "page-about",
