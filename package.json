@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@heavyind/vue-trans": "0.0.5",
     "core-js": "^3.2.1",
     "express": "^4.17.1",
     "hi-array-utils": "0.0.1",
