@@ -1,9 +1,5 @@
 # Vue SSR Starter
 
-## ⚠️ This is experimental ⚠️
-
-Not recommended for production yet.
-
 ## To use:
 
 ```
