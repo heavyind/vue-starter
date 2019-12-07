@@ -6,16 +6,18 @@
       <preloader v-if="!ready"></preloader>
       <div v-else>
         <modal transitionName="trans-modal"></modal>
-          <header>
-            <nav>
-              <ul>
-                <!-- explicit durations can be set on <trans-link> -->
-                <li><trans-link to="/">Home</trans-link></li>
-                <li><trans-link to="/about">About</trans-link></li>
-              </ul>
-            </nav>
-            <button @click="modalOpen">Open modal</button>
-          </header>
+          <trans-fade-in-fade-out :initOnly="true" :duration="350" :delay="200">
+            <header>
+              <nav>
+                <ul>
+                  <!-- explicit durations can be set on <trans-link> -->
+                  <li><trans-link to="/">Home</trans-link></li>
+                  <li><trans-link to="/about">About</trans-link></li>
+                </ul>
+              </nav>
+              <button @click="modalOpen">Open modal</button>
+            </header>
+          </trans-fade-in-fade-out>
         <trans-router-view></trans-router-view>
       </div>
     </transition>
