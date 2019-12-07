@@ -66,7 +66,7 @@ export default {
       // out is complete, the trans module should only be initialized when 
       // this is done. Otherwise, we jump the gun and set the store's `initFlag`
       // early, within the preload sequence rather than within the main app, so
-      // `showOnce` transitions never occur
+      // `showOnce` transitions never occur.
       this.transInitialize();
     },
     mountedHook () {

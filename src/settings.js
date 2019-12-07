@@ -1,17 +1,7 @@
 
 
-export const transitions = {
-  default: {
-    name: "default",
-    duration: { leave: 700, enter: 0 }
-  },
-  instant: {
-    name: "instant",
-    duration: { leave: 0, enter: 0 }
-  }
-};
-
 export const preload = {
+  // See if this can be removed...
   duration: { leave: 400, enter: 0 }
 };
 

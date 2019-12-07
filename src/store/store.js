@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import preload from "./preload/index";
+import preload from "./preload/index"; /* Preload files */
 import modal from "./modal/index";
 
 Vue.use(Vuex);
