@@ -13,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@heavyind/vue-bi18n": "^0.2.2",
+    "@heavyind/vue-modal": "0.0.5",
+    "@heavyind/vue-trans": "^0.1.1",
     "core-js": "^3.2.1",
     "express": "^4.17.1",
     "hi-array-utils": "0.0.1",
