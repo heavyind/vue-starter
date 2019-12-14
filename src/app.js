@@ -14,7 +14,9 @@ export const createApp = function createApp() {
   const store = createStore();
 
   sync(store, router);
-  Vue.use(VueTrans, store);
+  Vue.use(VueTrans, { store, router });
+  Vue.use(VueBi18n, { store, languages: ["en", "fr"] });
+  Vue.use(VueModal, { store });
 
   router.beforeEach((to, from, next) => {
     if (store.state.modal.open) { store.dispatch("modal/close"); }

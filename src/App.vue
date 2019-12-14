@@ -13,7 +13,7 @@
         <button @click="modalOpen">Open modal</button>
       </header>
     </trans-fade-in-fade-out>
-    <trans-router-view></trans-router-view>
+    <trans-view></trans-view>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ import TransFadeInFadeOut from "@/component/trans-wrapper/FadeInFadeOut.vue";
 
 export default {
   name: "app",
+  mixins: [],
   components: {
     Modal,
     TransFadeInFadeOut
@@ -41,7 +42,7 @@ export default {
       this.$store.dispatch("modal/openWith", { component: ModalDummy });
     },
     mountedHook () {
-      this.transInitialize();
+      this.$store.dispatch("trans/initialize");
     }
   },
   watch: {
