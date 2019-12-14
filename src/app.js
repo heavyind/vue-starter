@@ -4,6 +4,8 @@ import { createRouter } from "@/router";
 import { createStore } from "@/store/store";
 import { sync } from "vuex-router-sync";
 import VueTrans from "@heavyind/vue-trans";
+import VueBi18n from "@heavyind/vue-bi18n";
+import VueModal from "@heavyind/vue-modal";
 
 
 export const createApp = function createApp() {
