@@ -10,7 +10,7 @@ import VueTrans from "@heavyind/vue-trans";
 
 
 export default {
-  name: "trans-fade-in-fade-out",
+  name: "TransFadeInFadeOut",
   mixins: [VueTrans.transProps]
 };
 </script>

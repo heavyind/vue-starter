@@ -10,7 +10,7 @@
 import TransFadeInFadeOut from "@/component/trans-wrapper/FadeInFadeOut.vue";
 
 export default {
-  name: "page-about",
+  name: "PageAbout",
   components: {
     TransFadeInFadeOut
   }
