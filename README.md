@@ -10,10 +10,16 @@ Those developing design-heavy Vue applications. It's tailored specifically for H
 
 ## To use:
 
+Open up your terminal and do this:
+
 ```
-$ npm run watch
-$ node server.js <port number> `# defaults to 8080`
+$ git clone https://github.com/heavyind/vue-starter
+$ cd vue-starter 
+$ npm i
+$ npm run watch & node server.js 
 ```
+
+The port defaults to 8080. You can optionally specify the port as the second argument to `node server.js` (e.g., `node server.js 9090`), or by setting your PORT environment variable (e.g., `export PORT=9090`). The order of precedence for port picking is 1) argument, 2) environment variable, 3) default 8080.
 
 ## License
 
