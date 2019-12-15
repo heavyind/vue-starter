@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const webpackMerge = require("webpack-merge");
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
-const settingsConfig = require("./webpack.settings.config.js");
 const serverConfig = require("./webpack.server.config.js");
 const clientConfig = require("./webpack.client.config.js");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
@@ -52,7 +51,6 @@ const baseConfig = {
 };
 
 module.exports = [
-  settingsConfig,
   webpackMerge(baseConfig, serverConfig),
   webpackMerge(baseConfig, clientConfig)
 ];
