@@ -20,7 +20,6 @@ export const createApp = function createApp() {
 
   router.beforeEach((to, from, next) => {
     if (store.state.modal.open) { store.dispatch("modal/close"); }
-    store.dispatch("trans/hide");
     next();
   });
 
