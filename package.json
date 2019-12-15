@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "rimraf dist && webpack --config ./build/webpack.base.config.js --watch --watch-poll",
+    "watch": "rimraf dist && NODE_ENV=development webpack --config ./build/webpack.base.config.js --watch --watch-poll",
     "build": "rimraf dist && NODE_ENV=production webpack --config ./build/webpack.base.config.js",
     "build:dev": "rimraf dist && webpack --config ./build/webpack.base.config.js",
     "test": "jest --watch",
