@@ -1,18 +1,15 @@
 <template>
   <div class="page-about">
-    <trans-fade-in-fade-out :duration="350">
+    <trans name="fifo" :duration="500">
       <h1>About page</h1>
-    </trans-fade-in-fade-out>
+    </trans>
   </div>
 </template>
 
 <script>
-import TransFadeInFadeOut from "@/component/trans-wrapper/FadeInFadeOut.vue";
+
 
 export default {
-  name: "PageAbout",
-  components: {
-    TransFadeInFadeOut
-  }
+  name: "PageAbout"
 };
 </script>
