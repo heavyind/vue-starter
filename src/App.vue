@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition mode="out-in"
-      :duration="settings.preload.duration"
+      :duration="400"
       @afterEnter="preloadAfterEnter">
       <preloader v-if="!ready"></preloader>
       <div v-else>
@@ -27,7 +27,6 @@
 <script>
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
-import * as settings from "@/settings";
 import Preloader from "@/component/preloader/Index.vue";
 import Modal from "@/component/modal/Index.vue";
 import ModalDummy from "@/component/modal/component/Dummy.vue";
@@ -48,10 +47,7 @@ export default {
   computed: {
     ...mapState({
       preloadDone: state => state.preload.done
-    }),
-    settings () {
-      return settings;
-    }
+    })
   },
   methods: {
     ...mapActions({
