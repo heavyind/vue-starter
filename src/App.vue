@@ -6,7 +6,7 @@
       <preloader v-if="!ready"></preloader>
       <div v-else>
         <modal transitionName="trans-modal"></modal>
-          <trans-fade-in-fade-out :initOnly="true" :duration="350" :delay="200">
+          <trans name="fifo" :initOnly="true" :duration="350" :delay="200">
             <header>
               <nav>
                 <ul>
@@ -17,8 +17,8 @@
               </nav>
               <button @click="modalOpen">Open modal</button>
             </header>
-          </trans-fade-in-fade-out>
-        <trans-router-view></trans-router-view>
+          </trans>
+        <trans-view></trans-view>
       </div>
     </transition>
   </div>
@@ -31,15 +31,14 @@ import * as settings from "@/settings";
 import Preloader from "@/component/preloader/Index.vue";
 import Modal from "@/component/modal/Index.vue";
 import ModalDummy from "@/component/modal/component/Dummy.vue";
-import TransFadeInFadeOut from "@/component/trans-wrapper/FadeInFadeOut.vue";
 
 
 export default {
   name: "app",
+  mixins: [],
   components: {
     Preloader,
-    Modal,
-    TransFadeInFadeOut
+    Modal
   },
   data () {
     return {
@@ -67,7 +66,7 @@ export default {
       // this is done. Otherwise, we jump the gun and set the store's `initFlag`
       // early, within the preload sequence rather than within the main app, so
       // `showOnce` transitions never occur
-      this.transInitialize();
+      this.$store.dispatch("trans/initialize");
     },
     mountedHook () {
       // This is set to a timer for the sake of example. Change it to suit
@@ -101,5 +100,18 @@ export default {
 
 <style lang="sass">
 @import "~SASS/main";
+
+
+// "Fade-in, fade-out"
+.fifo-enter-active
+  opacity: 1
+  transition: opacity
+
+.fifo-enter
+  opacity: 0
+
+.fifo-leave-active
+  opacity: 0
+  transition: opacity
 </style>
 

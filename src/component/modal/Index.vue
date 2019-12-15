@@ -1,68 +1,28 @@
 <template>
-  <transition :name="transitionName" :duration="{ leave: closeDelay }">
-    <div role="dialog" v-if="openProxy" class="modal" :style="style">
-      <component
-        v-if="settings"
-        :is="settings.component"
-        v-bind="settings.props">
-      </component>
-    </div>
-  </transition>
+  <div
+    v-if="$modal.isOpen"
+    class="modal"
+    role="dialog"
+    aria-modal="true">
+    <button aria-label="close dialog" @click="$modal.close">Close</button>
+    <component
+      v-if="$modal.component"
+      :is="$modal.component">
+    </component>
+  </div>
 </template>
 
 <script>
-import Vue from "vue";
-import { mapState, mapActions } from "vuex";
+import VueModal from "@heavyind/vue-modal";
+const { createModalMixin } = VueModal;
 
 
 export default {
-  props: {
-    transitionName: {
-      type: String,
-      required: false,
-      default: ""
-    },
-    backgroundColor: {
-      type: String,
-      required: false,
-      default: "rgba(0, 0, 0, 1.0)"
-    },
-    closeDelay: {
-      type: [Number, null],
-      required: false,
-      default: null
-    }
-  },
-  data () {
-    return {
-      openProxy: false
-    };
-  },
-  computed: {
-    ...mapState({
-      open: state => state.modal.open,
-      settings: state => state.modal.settings
-    }),
-    style () {
-      return {
-        "background-color": this.backgroundColor
-      };
-    }
-  },
+  name: "Modal",
+  mixins: [createModalMixin()],
   methods: {
-    beforeLeave () {
-      console.log("About to leave");
-    },
-    ...mapActions({
-      close: "modal/close"
-    }),
     handleKeyCodes (e) {
-      if (e.keyCode === 27) { this.close(); }
-    }
-  },
-  watch: {
-    open (c) {
-      Vue.nextTick(() => this.openProxy = c);
+      if (e.keyCode === 27) { this.$modal.close(); }
     }
   },
   mounted () {
@@ -76,12 +36,14 @@ export default {
 
 <style lang="sass">
 
+
 .modal
   position: fixed
+  color: white
   top: 0
   left: 0
   width: 100vw
   height: 100vh
-  z-index: 110
+  background: rgba(black, 0.8)
 
 </style>
