@@ -17,7 +17,7 @@ import VueTrans from "@heavyind/vue-trans";
 
 
 export default {
-  name: "trans-up-in-down-out",
+  name: "TransUpInDownOut",
   mixins: [VueTrans.transProps],
   data () {
     return {

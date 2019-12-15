@@ -10,7 +10,7 @@
 import TransUpInDownOut from "@/component/trans-wrapper/UpInDownOut.vue";
 
 export default {
-  name: "page-index",
+  name: "PageIndex",
   components: {
     TransUpInDownOut
   }
