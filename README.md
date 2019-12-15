@@ -2,7 +2,7 @@
 
 ## What it is
 
-A Vue SSR web application that uses Vue Router, Vuex, @heavyind/vue-trans, @heavyind/vue-bi18n, and @heavyind/vue-modal.
+A Vue SSR web application that uses Vue Router, Vuex, [@heavyind/vue-trans](https://www.npmjs.com/package/@heavyind/vue-trans), [@heavyind/vue-modal](https://www.npmjs.com/package/@heavyind/vue-modal), and [@heavyind/vue-bi18n](https://www.npmjs.com/package/@heavyind/vue-bi18n).
 
 ## Who it's for
 
