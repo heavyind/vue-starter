@@ -7,8 +7,7 @@ const clientManifest = require("./dist/client-manifest.json");
 const serverBundlePath = path.resolve(__dirname, "dist/app.server.json");
 const skeletonPath = path.resolve(__dirname, "./src/skeleton.html");
 const server = express();
-const settings = require("./src/settings.cjs");
-
+const settings = require("./src/settings.js");
 
 const DEFAULT_PORT = 8080;
 
