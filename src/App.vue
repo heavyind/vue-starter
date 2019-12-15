@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <modal transitionName="trans-modal"></modal>
-    <trans-fade-in-fade-out :initOnly="true" :duration="350" :delay="200">
+    <trans name="fifo" :initOnly="true" :duration="350" :delay="200">
       <header>
         <nav>
           <ul>
@@ -12,7 +12,7 @@
         </nav>
         <button @click="modalOpen">Open modal</button>
       </header>
-    </trans-fade-in-fade-out>
+    </trans>
     <trans-view></trans-view>
   </div>
 </template>
@@ -22,15 +22,13 @@ import Vue from "vue";
 import { mapState, mapActions } from "vuex";
 import Modal from "@/component/modal/Index.vue";
 import ModalDummy from "@/component/modal/component/Dummy.vue";
-import TransFadeInFadeOut from "@/component/trans-wrapper/FadeInFadeOut.vue";
 
 
 export default {
   name: "app",
   mixins: [],
   components: {
-    Modal,
-    TransFadeInFadeOut
+    Modal
   },
   data () {
     return {
@@ -60,4 +58,17 @@ export default {
 
 <style lang="sass">
 @import "~SASS/main";
+
+
+// "Fade-in, fade-out"
+.fifo-enter-active
+  opacity: 1
+  transition: opacity
+
+.fifo-enter
+  opacity: 0
+
+.fifo-leave-active
+  opacity: 0
+  transition: opacity
 </style>
