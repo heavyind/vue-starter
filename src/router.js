@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { pageMeta } from "@/settings";
+import { pageMeta } from "@/../settings";
 
 const PageIndex = () => import(/* webpackChunkName: "pageIndex" */ "@/page/Index.vue");
 const PageAbout = () => import(/* webpackChunkName: "pageAbout" */ "@/page/about/Index.vue");
