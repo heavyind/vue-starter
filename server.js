@@ -10,10 +10,15 @@ const server = express();
 const settings = require("./src/settings.cjs");
 
 
+const DEFAULT_PORT = 8080;
+
+
 server.use(express.static("./public"));
 server.use(express.static("./dist"));
 
 server.get("*", (req, res) => {
+
+  const currentPageSettings = settings.pageMeta[req.url];
 
   const renderer = createBundleRenderer(serverBundlePath, {
     runInNewContext: false,
@@ -23,8 +28,8 @@ server.get("*", (req, res) => {
 
   const context = { 
     url: req.url,
-    title: settings.pageMeta[req.url]["title"],
-    metaDescription: settings.pageMeta[req.url]["metaDescription"]
+    title: currentPageSettings ? currentPageSettings.title : "",
+    metaDescription: currentPageSettings ? currentPageSettings.title : ""
   };
 
   renderer.renderToString(context, (err, html) => {
@@ -36,4 +41,18 @@ server.get("*", (req, res) => {
 });
 
 
-server.listen(process.argv[2] || 8080);
+const portArgPassed = !!process.argv[2];
+const portEnvPassed = !!process.env.PORT;
+const makePortArgMsg = (p) => `Running on PORT argument ${p}.`;
+const makePortEnvMsg = (p) => `Running on PORT environment variable ${p}.`;
+const makeDefaultPortMsg = (p) => `Running on default PORT ${p}.`;
+
+if (portArgPassed) {
+  console.log(makePortArgMsg(process.argv[2]));
+} else if (portEnvPassed) {
+  console.log(makePortEnvMsg(process.env.PORT));
+} else {
+  console.log(makeDefaultPortMsg(DEFAULT_PORT));
+}
+
+server.listen(process.argv[2] || process.env.PORT || 8080);
