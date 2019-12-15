@@ -3,6 +3,7 @@ const path = require("path");
 const distPath = path.resolve(__dirname, "../src");
 
 module.exports = {
+  mode: "production",
   entry: {
     settings: "./src/settings.js"
   },
