@@ -1,8 +1,6 @@
 <template>
   <div class="page-index">
-    <trans name="fifo" :duration="500">
-      <h1>Home page</h1>
-    </trans>
+    <h1>Home page</h1>
   </div>
 </template>
 

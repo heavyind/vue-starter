@@ -1,8 +1,6 @@
 <template>
   <div class="page-about">
-    <trans name="fifo" :duration="500">
-      <h1>About page</h1>
-    </trans>
+    <h1>About page</h1>
   </div>
 </template>
 
